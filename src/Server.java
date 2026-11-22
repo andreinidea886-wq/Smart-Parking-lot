@@ -18,7 +18,7 @@ import java.util.concurrent.Executors;
 
 /** Local Java HTTP server for the Smart Parking Lot browser prototype. */
 public final class Server {
-    private static final Path ROOT = Path.of(".").toAbsolutePath().normalize();
+    private static final Path ROOT = findWebRoot();
     private static final String COOKIE = "parkside_session";
     private static final long SESSION_LIFETIME_SECONDS = 8 * 60 * 60;
     private static final String ADMIN_USER = setting("PARKSIDE_ADMIN_USER", "admin");
@@ -40,10 +40,29 @@ public final class Server {
         server.setExecutor(Executors.newCachedThreadPool());
         server.start();
         System.out.println("Parkside is running at http://localhost:" + port);
+        System.out.println("Serving website files from " + ROOT);
         System.out.println("Demo admin username: " + ADMIN_USER);
         if (System.getenv("PARKSIDE_ADMIN_PASSWORD") == null) {
             System.out.println("Demo password: admin123 (set PARKSIDE_ADMIN_PASSWORD to change it)");
         }
+    }
+
+    private static Path findWebRoot() {
+        try {
+            Path classLocation = Path.of(Server.class.getProtectionDomain().getCodeSource().getLocation().toURI())
+                .toAbsolutePath().normalize();
+            if (Files.isRegularFile(classLocation.resolve("index.html"))) return classLocation;
+            Path nestedSource = classLocation.resolve("src");
+            if (Files.isRegularFile(nestedSource.resolve("index.html"))) return nestedSource;
+        } catch (Exception ignored) {
+            // Fall back to common launch locations below.
+        }
+
+        Path workingDirectory = Path.of(".").toAbsolutePath().normalize();
+        if (Files.isRegularFile(workingDirectory.resolve("index.html"))) return workingDirectory;
+        Path nestedSource = workingDirectory.resolve("src");
+        if (Files.isRegularFile(nestedSource.resolve("index.html"))) return nestedSource;
+        return workingDirectory;
     }
 
     private static void handle(HttpExchange exchange) throws IOException {

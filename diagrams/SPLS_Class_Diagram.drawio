@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="spls-class-diagram" name="Class Diagram">
-        <mxGraphModel dx="652" dy="656" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1400" math="0" shadow="0">
+        <mxGraphModel dx="2724" dy="1131" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1400" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -22,14 +22,14 @@
                 <mxCell id="admin" parent="1" style="swimlane;html=1;rounded=1;startSize=28;horizontal=1;whiteSpace=wrap;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" value="&lt;b&gt;Administrator&lt;/b&gt;" vertex="1">
                     <mxGeometry height="165" width="275" x="352.5" y="400" as="geometry"/>
                 </mxCell>
+                <mxCell id="fRgA_f8tZHq3CeIZJRty-9" parent="admin" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;" value="&lt;span style=&quot;color: rgb(0, 0, 0); font-weight: 700;&quot;&gt;- role: String&lt;/span&gt;&lt;div&gt;&lt;font color=&quot;#000000&quot;&gt;&lt;br style=&quot;scrollbar-color: rgba(168, 169, 170, 0.52) rgb(18, 19, 20); font-weight: 700; color: rgb(63, 63, 63);&quot;&gt;&lt;/font&gt;&lt;span style=&quot;color: rgb(0, 0, 0); font-weight: 700;&quot;&gt;+ reviewIncident(incident): void&lt;/span&gt;&lt;br style=&quot;color: rgb(63, 63, 63); scrollbar-color: rgba(168, 169, 170, 0.52) rgb(18, 19, 20); font-weight: 700;&quot;&gt;&lt;span style=&quot;color: rgb(0, 0, 0); font-weight: 700;&quot;&gt;+ resolveIncident(incident): void&lt;/span&gt;&lt;br style=&quot;color: rgb(63, 63, 63); scrollbar-color: rgba(168, 169, 170, 0.52) rgb(18, 19, 20); font-weight: 700;&quot;&gt;&lt;span style=&quot;color: rgb(0, 0, 0); font-weight: 700;&quot;&gt;+ updateSpace(space, status): void&lt;/span&gt;&lt;/div&gt;" vertex="1">
+                    <mxGeometry height="30" width="250" x="12.5" y="60" as="geometry"/>
+                </mxCell>
                 <mxCell id="attendant" parent="1" style="swimlane;html=1;rounded=1;startSize=28;horizontal=1;whiteSpace=wrap;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" value="&lt;b&gt;Attendant (optional)&lt;/b&gt;" vertex="1">
                     <mxGeometry height="155" width="275" x="30" y="610" as="geometry"/>
                 </mxCell>
                 <mxCell id="attendant-details" parent="attendant" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;" value="&lt;b&gt;- assignedSessions: List&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;+ recordEntry(vehicle): ParkingSession&lt;/b&gt;&lt;br&gt;&lt;b&gt;+ recordExit(session): void&lt;/b&gt;&lt;br&gt;&lt;b&gt;+ assistDriver(driver): void&lt;/b&gt;" vertex="1">
                     <mxGeometry height="105" width="255" x="10" y="35" as="geometry"/>
-                </mxCell>
-                <mxCell id="fRgA_f8tZHq3CeIZJRty-9" parent="admin" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;" value="&lt;span style=&quot;color: rgb(0, 0, 0); font-weight: 700;&quot;&gt;- role: String&lt;/span&gt;&lt;div&gt;&lt;font color=&quot;#000000&quot;&gt;&lt;br style=&quot;scrollbar-color: rgba(168, 169, 170, 0.52) rgb(18, 19, 20); font-weight: 700; color: rgb(63, 63, 63);&quot;&gt;&lt;/font&gt;&lt;span style=&quot;color: rgb(0, 0, 0); font-weight: 700;&quot;&gt;+ reviewIncident(incident): void&lt;/span&gt;&lt;br style=&quot;color: rgb(63, 63, 63); scrollbar-color: rgba(168, 169, 170, 0.52) rgb(18, 19, 20); font-weight: 700;&quot;&gt;&lt;span style=&quot;color: rgb(0, 0, 0); font-weight: 700;&quot;&gt;+ resolveIncident(incident): void&lt;/span&gt;&lt;br style=&quot;color: rgb(63, 63, 63); scrollbar-color: rgba(168, 169, 170, 0.52) rgb(18, 19, 20); font-weight: 700;&quot;&gt;&lt;span style=&quot;color: rgb(0, 0, 0); font-weight: 700;&quot;&gt;+ updateSpace(space, status): void&lt;/span&gt;&lt;/div&gt;" vertex="1">
-                    <mxGeometry height="30" width="250" x="12.5" y="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="vehicle" parent="1" style="swimlane;html=1;rounded=1;startSize=28;horizontal=1;whiteSpace=wrap;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=12;" value="&lt;b&gt;Vehicle&lt;/b&gt;" vertex="1">
                     <mxGeometry height="135" width="240" x="370" y="145" as="geometry"/>
@@ -80,7 +80,7 @@
                     <mxGeometry height="135" width="250" x="10" y="15" as="geometry"/>
                 </mxCell>
                 <mxCell id="server" parent="1" style="swimlane;html=1;rounded=1;startSize=28;horizontal=1;whiteSpace=wrap;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=12;" value="&lt;b&gt;Server (Java)&lt;/b&gt;" vertex="1">
-                    <mxGeometry height="155" width="250" x="80" y="690" as="geometry"/>
+                    <mxGeometry height="155" width="250" x="60" y="790" as="geometry"/>
                 </mxCell>
                 <mxCell id="fRgA_f8tZHq3CeIZJRty-12" parent="server" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;" value="&lt;span style=&quot;color: rgb(0, 0, 0); font-weight: 700;&quot;&gt;- sessions: Map&lt;/span&gt;&lt;br style=&quot;color: rgb(63, 63, 63); scrollbar-color: rgba(168, 169, 170, 0.52) rgb(18, 19, 20); font-weight: 700;&quot;&gt;&lt;span style=&quot;color: rgb(0, 0, 0); font-weight: 700;&quot;&gt;- adminUser: String&lt;/span&gt;&lt;div&gt;&lt;font color=&quot;#000000&quot;&gt;&lt;br style=&quot;scrollbar-color: rgba(168, 169, 170, 0.52) rgb(18, 19, 20); font-weight: 700; color: rgb(63, 63, 63);&quot;&gt;&lt;/font&gt;&lt;span style=&quot;color: rgb(0, 0, 0); font-weight: 700;&quot;&gt;+ handle(request): void&lt;/span&gt;&lt;br style=&quot;color: rgb(63, 63, 63); scrollbar-color: rgba(168, 169, 170, 0.52) rgb(18, 19, 20); font-weight: 700;&quot;&gt;&lt;span style=&quot;color: rgb(0, 0, 0); font-weight: 700;&quot;&gt;+ login(request): void&lt;/span&gt;&lt;br style=&quot;color: rgb(63, 63, 63); scrollbar-color: rgba(168, 169, 170, 0.52) rgb(18, 19, 20); font-weight: 700;&quot;&gt;&lt;span style=&quot;color: rgb(0, 0, 0); font-weight: 700;&quot;&gt;+ isAuthenticated(request): Boolean&lt;/span&gt;&lt;br style=&quot;color: rgb(63, 63, 63); scrollbar-color: rgba(168, 169, 170, 0.52) rgb(18, 19, 20); font-weight: 700;&quot;&gt;&lt;span style=&quot;color: rgb(0, 0, 0); font-weight: 700;&quot;&gt;+ serveFile(path): void&lt;/span&gt;&lt;/div&gt;" vertex="1">
                     <mxGeometry height="100" width="275" x="15" y="40" as="geometry"/>
@@ -130,7 +130,13 @@
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="extends-attendant" edge="1" parent="1" source="attendant" style="endArrow=block;endFill=0;html=1;rounded=0;strokeColor=#555555;" target="user" value="extends">
-                    <mxGeometry relative="1" as="geometry"/>
+                    <mxGeometry relative="1" x="0.0562" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="-30" y="687.5"/>
+                            <mxPoint x="-30" y="450"/>
+                            <mxPoint x="-30" y="220"/>
+                        </Array>
+                    </mxGeometry>
                 </mxCell>
                 <mxCell id="reservation-service" parent="1" style="swimlane;html=1;rounded=1;startSize=28;horizontal=1;whiteSpace=wrap;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" value="&lt;b&gt;ReservationService&lt;/b&gt;" vertex="1">
                     <mxGeometry height="150" width="350" x="80" y="970" as="geometry"/>

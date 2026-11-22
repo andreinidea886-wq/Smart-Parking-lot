@@ -1,4 +1,4 @@
-# Project Proposal: Smart Parking Lot
+﻿# Project Proposal: Smart Parking Lot
 
 ## 1. Project Overview
 
@@ -21,7 +21,7 @@ The project proposes a centralized system that displays compatible parking avail
 | Traffic congestion | Automatically direct drivers to available spaces and support reservations to reduce time spent searching. |
 | Poor space utilization | Track occupancy by space and make unused or newly vacated spaces visible promptly. |
 | Poor driver behavior | Automatically track parking sessions and time limits, issue alerts, and refer unresolved incidents to the administrator. |
-| Outdated payment methods | Calculate fees automatically and provide digital payment and electronic receipts. |
+| Outdated payment methods | Calculate fees automatically and provide digital payment and electronic receipts using Philippine pesos (₱). |
 
 ## 4. Project Objectives
 
@@ -90,16 +90,16 @@ These items can be considered for future development once the prototype and its 
 
 The system can be organized around the following classes:
 
-- `User` — shared account details and authentication behavior.
-- `Driver`, `Attendant`, and `Administrator` — user roles with role-specific actions.
-- `ParkingLot` — facility details, zones, spaces, and capacity.
-- `ParkingSpace` — space identifier, type, status, and current assignment.
-- `Vehicle` — plate number, type, and associated driver.
-- `Reservation` — reserved space, driver, time window, and reservation status.
-- `ParkingSession` — vehicle, space, entry time, exit time, and session status.
-- `Rate` — pricing rules used to calculate a session fee.
-- `Payment` — amount, method, transaction status, and receipt information.
-- `Incident` — a recorded parking-rule issue or operational event.
+- `User` â€” shared account details and authentication behavior.
+- `Driver`, `Attendant`, and `Administrator` â€” user roles with role-specific actions.
+- `ParkingLot` â€” facility details, zones, spaces, and capacity.
+- `ParkingSpace` â€” space identifier, type, status, and current assignment.
+- `Vehicle` â€” plate number, type, and associated driver.
+- `Reservation` â€” reserved space, driver, time window, and reservation status.
+- `ParkingSession` â€” vehicle, space, entry time, exit time, and session status.
+- `Rate` â€” pricing rules used to calculate a session fee.
+- `Payment` â€” amount, method, transaction status, and receipt information.
+- `Incident` â€” a recorded parking-rule issue or operational event.
 
 The design applies core OOP concepts: **encapsulation** to protect object state, **inheritance** for shared user behavior, **polymorphism** for role-specific actions, and **abstraction** to keep workflows separate from storage and payment details. Services such as `ReservationService`, `ParkingService`, and `PaymentService` can coordinate related operations.
 

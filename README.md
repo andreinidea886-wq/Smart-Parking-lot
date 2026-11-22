@@ -61,6 +61,8 @@ Then visit `http://localhost:8081`.
 - Select Maya, PayPal, GCash, GoMo, cash, or another e-wallet for simulated payment records.
 - Use the admin dashboard to review alerts, update settings, and manage parking activity.
 
+All displayed parking rates and payment amounts use Philippine pesos (₱).
+
 ## Prototype notes
 
 - Parking records are stored in the browser's `localStorage`. They are specific to that browser profile and are not synchronized between devices.

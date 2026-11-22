@@ -16,6 +16,16 @@
   state.sessions ||= [];
   state.payments ||= [];
   state.activities ||= [];
+  function normalizeCurrencyRecords(data) {
+    data.payments.forEach(payment => {
+      const amount = Number(String(payment.amount ?? '').replace(/[^\d.-]/g, ''));
+      if (Number.isFinite(amount)) payment.amount = `₱${amount.toFixed(2)}`;
+    });
+    data.activities.forEach(activity => {
+      if (typeof activity.text === 'string') activity.text = activity.text.replace(/\$(?=\s*\d)/g, '₱');
+    });
+  }
+  normalizeCurrencyRecords(state);
   const defaultSettings={rates:{standard:2.5,motorcycle:1.25,ev:3.5},maxSessionHours:8,reservationGraceMinutes:30,reservationsEnabled:true,expiryReminders:true};
   state.settings={...defaultSettings,...state.settings,rates:{...defaultSettings.rates,...(state.settings?.rates||{})}};
   let levelFilter = 'All';
@@ -30,7 +40,7 @@
   : ['Standard','Accessible'].includes(space.type);
   const availableCount = () => state.spaces.filter(space => space.status === 'Available').length;
   const rateFor = vehicle => vehicle === 'Motorcycle' ? Number(state.settings.rates.motorcycle) : vehicle === 'EV' ? Number(state.settings.rates.ev) : Number(state.settings.rates.standard);
-  const fmtMoney = amount => '$' + amount.toFixed(2);
+  const fmtMoney = amount => '₱' + amount.toFixed(2);
   const elapsedMs = session => Math.max(0, Date.now() - new Date(session.startedAt || Date.now()).getTime());
   const elapsedLabel = ms => { const mins=Math.floor(ms/60000),hours=Math.floor(mins/60);return hours?`${hours}h ${mins%60}m`:`${mins}m`; };
   const feeFor = session => Math.max(1, Math.ceil(elapsedMs(session)/3600000)) * rateFor(session.vehicle);
@@ -166,14 +176,14 @@
   $('#vehicleType').addEventListener('change',()=>{chosenVehicle=$('#vehicleType').value;renderSpaces();});
   document.querySelectorAll('[data-filter-level]').forEach(button=>button.addEventListener('click',()=>{document.querySelectorAll('[data-filter-level]').forEach(item=>item.classList.toggle('selected',item===button));levelFilter=button.dataset.filterLevel;renderSpaces();}));
   $('#resetFilters').addEventListener('click',()=>{levelFilter='All';document.querySelectorAll('[data-filter-level]').forEach(button=>button.classList.toggle('selected',button.dataset.filterLevel==='All'));renderSpaces();});
-  $('#refreshAvailability').addEventListener('click',()=>{state={...state,...readState()};state.spaces||=makeDefaultSpaces();state.reservations||=[];state.sessions||=[];state.payments||=[];state.activities||=[];render();showToast('Compatible space availability refreshed.');});
+  $('#refreshAvailability').addEventListener('click',()=>{state={...state,...readState()};state.spaces||=makeDefaultSpaces();state.reservations||=[];state.sessions||=[];state.payments||=[];state.activities||=[];normalizeCurrencyRecords(state);render();showToast('Compatible space availability refreshed.');});
   $('#doneReserve').addEventListener('click',()=>pendingSpace?confirmReservation():closeReserve());
   $('#driverCheckin').addEventListener('click',()=>{const reservation=state.reservations.find(item=>item.reference===state.driverProfile?.reference);if(reservation)checkInReservation(reservation);});
   $('#completeDriverPayment').addEventListener('click',completePayment);$('#simulatePaymentFailure').addEventListener('click',simulateFailure);
   $('#driverPaymentClose').addEventListener('click',closePayment);$('#driverPaymentModal').addEventListener('click',event=>{if(event.target===$('#driverPaymentModal'))closePayment();});
   $('#reserveClose').addEventListener('click',closeReserve);$('#reserveModal').addEventListener('click',event=>{if(event.target===$('#reserveModal'))closeReserve();});
   document.addEventListener('keydown',event=>{if(event.key==='Escape'){closeReserve();closePayment();}});
-  window.addEventListener('storage',event=>{if(event.key!=='parkside-state'||!event.newValue)return;try{state=JSON.parse(event.newValue);state.spaces||=makeDefaultSpaces();state.reservations||=[];state.sessions||=[];state.payments||=[];state.activities||=[];render();}catch{}});
+  window.addEventListener('storage',event=>{if(event.key!=='parkside-state'||!event.newValue)return;try{state=JSON.parse(event.newValue);state.spaces||=makeDefaultSpaces();state.reservations||=[];state.sessions||=[];state.payments||=[];state.activities||=[];normalizeCurrencyRecords(state);render();}catch{}});
   render();
   setInterval(()=>{expireReservations();checkTimeReminder();if(state.driverProfile)renderVisit();},30000);
 })();

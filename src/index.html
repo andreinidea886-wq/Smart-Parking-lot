@@ -1,0 +1,50 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#f5f6f2" />
+  <title>Parkside  Find your parking</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <script src="auth.js" defer></script>
+  <script src="driver.js" defer></script>
+</head>
+<body class="driver-page">
+  <header class="driver-nav">
+  <a class="driver-brand" href="index.html"><span class="brand-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 15.5h18l-1.5-6a2 2 0 0 0-2-1.5H6.5a2 2 0 0 0-2 1.5L3 15.5Z"/><path d="M5 15.5v3m14-3v3M7 12h.01M17 12h.01M8 8l1-3h6l1 3"/></svg></span>parkside<span class="brand-period">.</span></a>
+  <nav><a class="driver-nav-link active" href="#find">Find parking</a><a class="driver-nav-link" href="#how">How it works</a></nav>
+  <div class="driver-nav-right"><span class="facility-open"><i></i>Parkside Central  Open</span><a class="admin-link" href="login.html">Admin login <span> </span></a></div>
+  </header>
+  <main>
+  <section class="driver-hero" id="find">
+  <div class="driver-hero-copy"><div class="driver-kicker"><span class="live-pip"></span>SMART PARKING, MADE SIMPLE</div><h1>Your spot is<br />closer than you <em>think.</em></h1><p>See what's open, pick the right space, and reserve before you arrive. No circling around.</p><div class="driver-hero-meta"><span><b id="heroAvailable">24</b> spaces open right now</span><span class="meta-divider"></span><span>3 levels  Open 24/7</span></div></div>
+  <div class="hero-art" aria-hidden="true"><div class="sun-disc"></div><div class="art-building back-building"></div><div class="art-building front-building"><div class="building-sign">P<span>ARKSIDE</span></div><div class="building-windows"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="building-base"></div></div><div class="art-road"><div class="road-line"></div><div class="art-car"><div class="car-window"></div><i></i><b></b></div></div><div class="float-tag"><span> </span> Space 1A is open</div><div class="float-leaf leaf-one"></div><div class="float-leaf leaf-two"></div></div>
+  </section>
+  <section class="finder-wrap" aria-label="Find a parking space">
+  <div class="finder-title"><div><div class="section-kicker">PARKSIDE CENTRAL</div><h2>Find your parking</h2></div><div class="updated-label"><span class="live-pip"></span>Availability updates live</div></div>
+  <form id="findForm" class="finder-form">
+  <div class="driver-field"><label for="vehicleType">Vehicle type</label><div class="select-wrap"><span class="field-symbol"> </span><select id="vehicleType"><option value="Car">Car</option><option value="Motorcycle">Motorcycle</option><option value="EV">Electric vehicle</option><option value="Accessible">Accessible vehicle</option></select></div></div>
+  <div class="driver-field"><label for="arrivalTime">Arrival</label><div class="select-wrap"><span class="field-symbol"> </span><select id="arrivalTime"><option value="Now">Arriving now</option><option value="In 30 minutes">In 30 minutes</option><option value="In 1 hour">In 1 hour</option><option value="In 2 hours">In 2 hours</option></select></div></div>
+  <div class="driver-field"><label for="stayDuration">How long?</label><div class="select-wrap"><span class="field-symbol"> </span><select id="stayDuration"><option>1 hour</option><option selected>2 hours</option><option>3 hours</option><option>4 hours</option><option>All day</option></select></div></div>
+  <button class="driver-search-btn" type="submit"><svg viewBox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 5 5"/></svg>Find a space</button>
+  </form>
+  </section>
+  <section class="my-visit" id="myVisit" hidden aria-live="polite"><div class="visit-left"><div class="section-kicker">YOUR PARKING SESSION</div><h2 id="visitHeading">Welcome back</h2><p id="visitDescription">Your visit details will appear here.</p></div><div class="visit-meter"><span>TIME PARKED</span><strong id="visitDuration">0m</strong></div><div class="visit-meter"><span>ESTIMATED FEE</span><strong id="visitFee">$0.00</strong></div><button class="secondary-btn visit-cancel-btn" id="cancelMyReservation" hidden>Cancel reservation</button><button class="driver-confirm-btn" id="driverCheckout">End parking & pay <span> </span></button></section>
+  <section class="driver-history" id="driverPaymentHistory" hidden><div class="section-kicker">YOUR RECEIPTS</div><div id="driverReceiptList"></div></section>
+  <section class="driver-results" id="results">
+  <div class="results-heading"><div><div class="section-kicker">YOUR OPTIONS</div><h2>Spaces that fit your trip</h2><p>Choose a spot below, or let us reserve the closest available one.</p></div><div class="level-filter" role="group" aria-label="Filter by level"><button class="level-choice selected" data-filter-level="All">All levels</button><button class="level-choice" data-filter-level="Level 1">Level 1</button><button class="level-choice" data-filter-level="Level 2">Level 2</button><button class="level-choice" data-filter-level="Level 3">Level 3</button></div></div>
+  <div class="driver-space-summary"><span><b id="resultCount">0</b> compatible spaces available</span><span>Rates from <b id="baseRate">$2.50 / hour</b></span></div>
+  <div id="driverSpaceGrid" class="driver-space-grid"></div>
+  <div id="noSpaces" class="no-spaces" hidden><span> </span><h3>No matching spaces right now</h3><p>Wait a moment and refresh, or check another level.</p><button type="button" id="refreshAvailability">Refresh availability</button><button type="button" id="resetFilters">Try all levels</button></div>
+  </section>
+  <section class="how-section" id="how"><div><div class="section-kicker">PARKING, WITHOUT THE HASSLE</div><h2>Three steps.<br />One less thing to worry about.</h2><p>From finding a compatible spot to paying when you leave, Parkside keeps your visit simple.</p></div><div class="how-steps"><article><span class="step-number">01</span><div class="step-icon"> </div><h3>Find a space</h3><p>Choose your vehicle and see only the spaces that work for you.</p></article><article><span class="step-number">02</span><div class="step-icon"> </div><h3>Reserve your spot</h3><p>Save a compatible space for your arrival and head straight there.</p></article><article><span class="step-number">03</span><div class="step-icon"> </div><h3>Park & go</h3><p>Your session is tracked automatically. Pay digitally when you leave.</p></article></div></section>
+  </main>
+  <footer class="driver-footer"><a class="driver-brand" href="#find"><span class="brand-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 15.5h18l-1.5-6a2 2 0 0 0-2-1.5H6.5a2 2 0 0 0-2 1.5L3 15.5Z"/><path d="M5 15.5v3m14-3v3M7 12h.01M17 12h.01M8 8l1-3h6l1 3"/></svg></span>parkside<span class="brand-period">.</span></a><span>Parkside Central  Smart parking for your day.</span><a href="login.html">Facility administrator</a></footer>
+  <div class="driver-toast" id="driverToast" role="status" aria-live="polite"></div>
+  <div class="reserve-backdrop" id="reserveModal" aria-hidden="true"><section class="reserve-dialog" role="dialog" aria-modal="true" aria-labelledby="reserveTitle"><button class="reserve-close" id="reserveClose" type="button" aria-label="Close dialog">&times;</button><div class="reserve-icon"> </div><div class="section-kicker" id="reserveKicker">READY WHEN YOU ARE</div><h2 id="reserveTitle">Confirm your reservation</h2><p id="reserveCopy">Add your details so your space is ready when you arrive.</p><div id="reserveDetails" class="reserve-details"><div class="driver-field"><label for="driverName">Your name</label><input id="driverName" placeholder="Name" autocomplete="name" /></div><div class="driver-field"><label for="driverPlate">License plate</label><input id="driverPlate" placeholder="Plate number" autocomplete="off" /></div></div><div id="ticketArea" class="reservation-ticket" hidden><div><span>YOUR SPACE</span><strong id="ticketSpace">1A</strong></div><div><span>ARRIVAL</span><strong id="ticketArrival">Now</strong></div><div><span>VEHICLE</span><strong id="ticketVehicle">Car</strong></div><div><span>REFERENCE</span><strong id="ticketRef">PS-00000</strong></div></div><button class="driver-confirm-btn" id="doneReserve">Confirm reservation</button><button class="driver-confirm-btn driver-arrive-btn" id="driverCheckin" hidden>I ve arrived  start parking</button></section></div>
+  <div class="reserve-backdrop" id="driverPaymentModal" aria-hidden="true"><section class="reserve-dialog" role="dialog" aria-modal="true" aria-labelledby="driverPaymentTitle"><button class="reserve-close" id="driverPaymentClose" type="button" aria-label="Close payment dialog">&times;</button><div class="section-kicker">PARKING CHECKOUT</div><h2 id="driverPaymentTitle">Review your parking fee</h2><p id="driverPaymentSummary">Choose a payment method to finish your visit.</p><div class="driver-payment-choice"><label for="driverPaymentMethod">Payment method</label><select id="driverPaymentMethod"><option>Maya</option><option>PayPal</option><option>GCash</option><option>GoMo</option><option>Cash</option><option>Other e-wallet</option></select></div><div id="driverPaymentError" class="payment-error" hidden></div><button class="driver-confirm-btn" id="completeDriverPayment">Pay now</button><button class="simulate-fail-btn" id="simulatePaymentFailure" type="button">Simulate declined payment</button></section></div>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#f5f6f2" />
+  <title>Admin sign in — Parkside</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="auth.js" defer></script>
+</head>
+<body class="login-page">
+  <main class="login-card">
+    <div class="login-brand"><span class="brand-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 15.5h18l-1.5-6a2 2 0 0 0-2-1.5H6.5a2 2 0 0 0-2 1.5L3 15.5Z"/><path d="M5 15.5v3m14-3v3M7 12h.01M17 12h.01M8 8l1-3h6l1 3"/></svg></span>parkside<span style="color:#9eaaa2;font-weight:500">.</span></div>
+    <div class="login-eyebrow">PARKSIDE CENTRAL · ADMIN</div>
+    <h1>Welcome back</h1>
+    <p class="login-subtitle">Sign in to manage your parking facility.</p>
+    <form id="loginForm" class="login-form">
+      <label for="username">Username</label>
+      <input id="username" name="username" autocomplete="username" placeholder="Enter your username" required />
+      <label for="password">Password</label>
+      <input id="password" name="password" type="password" autocomplete="current-password" placeholder="Enter your password" required />
+      <p id="loginError" class="login-error" role="alert"></p>
+      <button class="primary-btn login-submit" type="submit">Sign in to dashboard <span>→</span></button>
+    </form>
+    <p class="login-foot">Demo login: <strong>admin</strong> / <strong>admin123</strong></p>
+  </main>
+</body>
+</html>

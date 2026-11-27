@@ -51,18 +51,22 @@ public final class Server {
         try {
             Path classLocation = Path.of(Server.class.getProtectionDomain().getCodeSource().getLocation().toURI())
                 .toAbsolutePath().normalize();
-            if (Files.isRegularFile(classLocation.resolve("index.html"))) return classLocation;
-            Path nestedSource = classLocation.resolve("src");
-            if (Files.isRegularFile(nestedSource.resolve("index.html"))) return nestedSource;
+            Path classParent = classLocation.getParent();
+            if (hasWebFiles(classParent)) return classParent;
+            if (classParent != null && hasWebFiles(classParent.getParent())) return classParent.getParent();
         } catch (Exception ignored) {
             // Fall back to common launch locations below.
         }
 
         Path workingDirectory = Path.of(".").toAbsolutePath().normalize();
-        if (Files.isRegularFile(workingDirectory.resolve("index.html"))) return workingDirectory;
+        if (hasWebFiles(workingDirectory)) return workingDirectory;
         Path nestedSource = workingDirectory.resolve("src");
-        if (Files.isRegularFile(nestedSource.resolve("index.html"))) return nestedSource;
+        if (hasWebFiles(nestedSource)) return nestedSource;
         return workingDirectory;
+    }
+
+    private static boolean hasWebFiles(Path root) {
+        return root != null && Files.isRegularFile(root.resolve("html/index.html"));
     }
 
     private static void handle(HttpExchange exchange) throws IOException {
@@ -86,19 +90,26 @@ public final class Server {
                 return;
             }
 
-            String name = path.equals("/") ? "index.html" : path.substring(1);
-            if (name.contains("/") || !allowedFile(name)) {
+            String name;
+            switch (path) {
+                case "/":
+                case "/index.html": name = "html/index.html"; break;
+                case "/admin.html": name = "html/admin.html"; break;
+                case "/login.html": name = "html/login.html"; break;
+                default: name = path.startsWith("/") ? path.substring(1) : path;
+            }
+            if (!allowedFile(name)) {
                 text(exchange, 404, "Not found");
                 return;
             }
-            if (name.equals("admin.html") && !isAuthenticated(exchange)) {
+            if (name.equals("html/admin.html") && !isAuthenticated(exchange)) {
                 exchange.getResponseHeaders().set("Location", "/login.html");
                 exchange.getResponseHeaders().set("Cache-Control", "no-store");
                 exchange.sendResponseHeaders(302, -1);
                 exchange.close();
                 return;
             }
-            if (name.equals("login.html") && isAuthenticated(exchange)) {
+            if (name.equals("html/login.html") && isAuthenticated(exchange)) {
                 exchange.getResponseHeaders().set("Location", "/admin.html");
                 exchange.getResponseHeaders().set("Cache-Control", "no-store");
                 exchange.sendResponseHeaders(302, -1);
@@ -206,8 +217,8 @@ public final class Server {
     }
 
     private static boolean allowedFile(String name) {
-        return name.equals("index.html") || name.equals("admin.html") || name.equals("login.html")
-            || name.equals("styles.css") || name.equals("auth.js") || name.equals("driver.js");
+        return name.equals("html/index.html") || name.equals("html/admin.html") || name.equals("html/login.html")
+            || name.equals("css/styles.css") || name.equals("js/auth.js") || name.equals("js/driver.js");
     }
 
     private static String extension(String name) {

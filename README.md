@@ -11,11 +11,11 @@ The Java server uses only JDK libraries; no external dependencies are required.
 
 ## Run locally
 
-Open PowerShell in the project folder, enter `src`, and compile the server:
+Open PowerShell in the project folder, enter `src\java`, and compile the Java files:
 
 ```powershell
-Set-Location .\src
-javac Server.java
+Set-Location .\src\java
+javac *.java
 ```
 
 Start the server:
@@ -72,10 +72,10 @@ All displayed parking rates and payment amounts use Philippine pesos (₱).
 
 ## Project files
 
-- `src/index.html`, `src/admin.html`, `src/login.html`: driver and administrator pages
-- `src/styles.css`: shared styling
-- `src/driver.js`, `src/auth.js`: browser interactions and login UI
-- `src/Server.java`: local Java server, protected admin page, and login/session endpoints
+- `src/html/`: driver and administrator pages
+- `src/css/`: shared styling
+- `src/js/`: browser interactions and login UI
+- `src/java/`: Java model classes and local server
 - `docs/proposal.md`: project proposal
 - `diagrams/`: driver, staff, and class diagrams
 
@@ -83,7 +83,11 @@ All displayed parking rates and payment amounts use Philippine pesos (₱).
 
 ```text
 Smart Parking Lot/
-|-- src/        Website source files and Java server
+|-- src/
+|   |-- html/   Website pages
+|   |-- css/    Stylesheets
+|   |-- js/     Browser scripts
+|   `-- java/   Java classes and server
 |-- diagrams/   Draw.io workflow and class diagrams
 |-- docs/       Proposal and project documentation
 |-- README.md   Setup and usage guide

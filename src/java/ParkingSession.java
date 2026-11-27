@@ -2,6 +2,9 @@ import java.time.Duration;
 import java.time.Instant;
 import java.util.Objects;
 
+/**
+ * Records a vehicle parking stay from start to finish.
+ */
 public class ParkingSession {
     private final Vehicle vehicle;
     private final ParkingSpace space;

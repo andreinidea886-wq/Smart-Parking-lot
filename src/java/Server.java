@@ -36,6 +36,7 @@ public final class Server {
     public static void main(String[] args) throws IOException {
         int port = Integer.parseInt(setting("PORT", "8080"));
         HttpServer server = HttpServer.create(new InetSocketAddress("127.0.0.1", port), 0);
+        // Route browser requests through the shared request handler.
         server.createContext("/", Server::handle);
         server.setExecutor(Executors.newCachedThreadPool());
         server.start();

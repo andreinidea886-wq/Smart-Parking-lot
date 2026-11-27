@@ -1,5 +1,8 @@
 import java.util.Objects;
 
+/**
+ * Represents one parking space and tracks its availability.
+ */
 public class ParkingSpace {
     private final String id;
     private final String level;

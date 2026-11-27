@@ -1,5 +1,8 @@
 import java.util.Objects;
 
+/**
+ * Represents staff who review incidents and manage parking spaces.
+ */
 public class Administrator extends User {
     private final String role;
 

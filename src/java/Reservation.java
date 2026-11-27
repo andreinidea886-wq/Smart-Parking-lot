@@ -1,6 +1,9 @@
 import java.time.Instant;
 import java.util.Objects;
 
+/**
+ * Holds a parking space for a driver until arrival or expiry.
+ */
 public class Reservation {
     private final String reference;
     private final String driverId;
@@ -46,6 +49,14 @@ public class Reservation {
             status = ReservationStatus.EXPIRED;
             space.release();
         }
+    }
+    public boolean expireIfOverdue(Instant now) {
+        Objects.requireNonNull(now, "now");
+        if (status == ReservationStatus.RESERVED && !expiresAt.isAfter(now)) {
+            expire();
+            return true;
+        }
+        return false;
     }
     public void complete() {
         if (status == ReservationStatus.CHECKED_IN) status = ReservationStatus.COMPLETED;

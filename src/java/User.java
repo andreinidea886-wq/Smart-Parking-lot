@@ -1,6 +1,10 @@
 import java.util.Objects;
 
+/**
+ * Stores account details shared by the system user roles.
+ */
 public abstract class User {
+    // Private fields keep callers from changing account details directly.
     private final String id;
     private final String name;
     private final String contact;

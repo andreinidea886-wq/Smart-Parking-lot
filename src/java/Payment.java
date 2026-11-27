@@ -2,6 +2,9 @@ import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.Objects;
 
+/**
+ * Records a payment attempt and provides receipt text.
+ */
 public class Payment {
     private final String reference;
     private final BigDecimal amount;

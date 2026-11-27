@@ -4,6 +4,9 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+/**
+ * Stores parking spaces and finds spaces available for a vehicle.
+ */
 public class ParkingLot {
     private final String name;
     private final List<ParkingSpace> spaces;

@@ -1,3 +1,6 @@
+/**
+ * Defines which vehicle types can use each parking-space type.
+ */
 public final class CompatibilityPolicy {
     private CompatibilityPolicy() { }
 

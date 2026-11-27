@@ -1,5 +1,3 @@
-import java.util.Objects;
-
 /**
  * Stores a vehicle plate and vehicle type.
  */

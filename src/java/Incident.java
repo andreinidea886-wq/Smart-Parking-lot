@@ -1,5 +1,4 @@
 import java.time.Instant;
-import java.util.Objects;
 
 /**
  * Records a parking issue and its resolution.
@@ -14,13 +13,14 @@ public class Incident {
     private String resolution;
 
     public Incident(String id, String type, String details, ParkingSpace space, Instant createdAt) {
-        this.id = Objects.requireNonNull(id, "id");
-        this.type = Objects.requireNonNull(type, "type");
-        this.details = Objects.requireNonNull(details, "details");
+        this.id = Validation.requireText(id, "id");
+        this.type = Validation.requireText(type, "type");
+        this.details = Validation.requireText(details, "details");
         this.space = space;
-        this.createdAt = Objects.requireNonNull(createdAt, "createdAt");
+        this.createdAt = Validation.requireNotFuture(createdAt, "createdAt");
         this.status = IncidentStatus.OPEN;
     }
+
     public String getId() { return id; }
     public String getType() { return type; }
     public String getDetails() { return details; }
@@ -28,9 +28,14 @@ public class Incident {
     public Instant getCreatedAt() { return createdAt; }
     public IncidentStatus getStatus() { return status; }
     public String getResolution() { return resolution; }
+
     public void resolve(String note) {
         // Record the resolution and update the incident status together.
-        resolution = Objects.requireNonNull(note, "note");
+        String checkedNote = Validation.requireText(note, "resolution note");
+        if (status != IncidentStatus.OPEN) {
+            throw new IllegalStateException("Only an open incident can be resolved");
+        }
+        resolution = checkedNote;
         status = IncidentStatus.RESOLVED;
     }
 }

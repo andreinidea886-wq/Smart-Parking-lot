@@ -1,4 +1,3 @@
-import java.util.Objects;
 
 /**
  * Represents one parking space and tracks its availability.
@@ -14,29 +13,56 @@ public class ParkingSpace {
     }
 
     public ParkingSpace(String id, String level, SpaceType type, SpaceStatus status) {
-        this.id = Objects.requireNonNull(id, "id");
-        this.level = Objects.requireNonNull(level, "level");
-        this.type = Objects.requireNonNull(type, "type");
-        this.status = Objects.requireNonNull(status, "status");
+        this.id = Validation.requireText(id, "id");
+        this.level = Validation.requireText(level, "level");
+        this.type = Validation.requireNonNull(type, "type");
+        this.status = Validation.requireNonNull(status, "status");
     }
 
     public String getId() { return id; }
     public String getLevel() { return level; }
     public SpaceType getType() { return type; }
     public SpaceStatus getStatus() { return status; }
+
     public boolean reserve() {
-        if (status != SpaceStatus.AVAILABLE) return false;
+        if (status != SpaceStatus.AVAILABLE) {
+            throw new IllegalStateException("Only an available space can be reserved");
+        }
         status = SpaceStatus.RESERVED;
         return true;
     }
+
     public boolean occupy() {
-        if (status != SpaceStatus.AVAILABLE && status != SpaceStatus.RESERVED) return false;
+        if (status != SpaceStatus.AVAILABLE && status != SpaceStatus.RESERVED) {
+            throw new IllegalStateException("Only an available or reserved space can be occupied");
+        }
         status = SpaceStatus.OCCUPIED;
         return true;
     }
+
     public void release() {
-        if (status == SpaceStatus.OCCUPIED || status == SpaceStatus.RESERVED) status = SpaceStatus.AVAILABLE;
+        if (status != SpaceStatus.OCCUPIED && status != SpaceStatus.RESERVED) {
+            throw new IllegalStateException("Only an occupied or reserved space can be released");
+        }
+        status = SpaceStatus.AVAILABLE;
     }
-    public void setOutOfService() { status = SpaceStatus.OUT_OF_SERVICE; }
-    public void setStatus(SpaceStatus status) { this.status = Objects.requireNonNull(status, "status"); }
+
+    public void setOutOfService() {
+        setStatus(SpaceStatus.OUT_OF_SERVICE);
+    }
+
+    /** Allows an administrator to correct a status after validating the requested value. */
+    public void setStatus(SpaceStatus requestedStatus) {
+        SpaceStatus checkedStatus = Validation.requireNonNull(requestedStatus, "status");
+        if (checkedStatus == SpaceStatus.OUT_OF_SERVICE
+                && (status == SpaceStatus.OCCUPIED || status == SpaceStatus.RESERVED)) {
+            throw new IllegalStateException("Release the space before marking it out of service");
+        }
+        if (status == SpaceStatus.OUT_OF_SERVICE
+                && checkedStatus != SpaceStatus.OUT_OF_SERVICE
+                && checkedStatus != SpaceStatus.AVAILABLE) {
+            throw new IllegalStateException("An out-of-service space must be made available before use");
+        }
+        this.status = checkedStatus;
+    }
 }

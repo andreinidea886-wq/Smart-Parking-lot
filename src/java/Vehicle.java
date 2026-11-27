@@ -8,8 +8,8 @@ public class Vehicle {
     private final VehicleType type;
 
     public Vehicle(String plate, VehicleType type) {
-        this.plate = Objects.requireNonNull(plate, "plate");
-        this.type = Objects.requireNonNull(type, "type");
+        this.plate = Validation.requireText(plate, "plate");
+        this.type = Validation.requireNonNull(type, "type");
     }
 
     public String getPlate() { return plate; }

@@ -1,6 +1,5 @@
 import java.time.Duration;
 import java.time.Instant;
-import java.util.Objects;
 
 /**
  * Records a vehicle parking stay from start to finish.
@@ -15,12 +14,17 @@ public class ParkingSession {
     private boolean reminderSent;
 
     public ParkingSession(Vehicle vehicle, ParkingSpace space, Instant startedAt, String reservationReference) {
-        this.vehicle = Objects.requireNonNull(vehicle, "vehicle");
-        this.space = Objects.requireNonNull(space, "space");
-        this.startedAt = Objects.requireNonNull(startedAt, "startedAt");
-        this.reservationReference = reservationReference;
+        this.vehicle = Validation.requireNonNull(vehicle, "vehicle");
+        this.space = Validation.requireNonNull(space, "space");
+        this.startedAt = Validation.requireNotFuture(startedAt, "startedAt");
+        if (space.getStatus() != SpaceStatus.OCCUPIED) {
+            throw new IllegalArgumentException("A session can only start in an occupied space");
+        }
+        this.reservationReference = reservationReference == null
+            ? null : Validation.requireText(reservationReference, "reservationReference");
         this.status = SessionStatus.ACTIVE;
     }
+
     public Vehicle getVehicle() { return vehicle; }
     public ParkingSpace getSpace() { return space; }
     public Instant getStartedAt() { return startedAt; }
@@ -28,13 +32,36 @@ public class ParkingSession {
     public String getReservationReference() { return reservationReference; }
     public SessionStatus getStatus() { return status; }
     public boolean isReminderSent() { return reminderSent; }
-    public Duration duration() { return Duration.between(startedAt, endedAt == null ? Instant.now() : endedAt); }
-    public void markReminderSent() { reminderSent = true; }
+
+    public Duration duration() {
+        Instant end = endedAt == null ? Instant.now() : endedAt;
+        if (end.isBefore(startedAt)) {
+            throw new IllegalStateException("Session end time cannot be before its start time");
+        }
+        return Duration.between(startedAt, end);
+    }
+
+    public void markReminderSent() {
+        if (status != SessionStatus.ACTIVE) {
+            throw new IllegalStateException("A reminder can only be sent for an active session");
+        }
+        if (reminderSent) {
+            throw new IllegalStateException("A reminder was already sent for this session");
+        }
+        reminderSent = true;
+    }
+
     public boolean close(Instant endTime) {
-        if (status != SessionStatus.ACTIVE) return false;
-        endedAt = Objects.requireNonNull(endTime, "endTime");
-        status = SessionStatus.COMPLETED;
+        Instant checkedEnd = Validation.requireNotFuture(endTime, "endTime");
+        if (status != SessionStatus.ACTIVE) {
+            throw new IllegalStateException("Only an active session can be closed");
+        }
+        if (checkedEnd.isBefore(startedAt)) {
+            throw new IllegalArgumentException("endTime cannot be before startedAt");
+        }
         space.release();
+        endedAt = checkedEnd;
+        status = SessionStatus.COMPLETED;
         return true;
     }
 }

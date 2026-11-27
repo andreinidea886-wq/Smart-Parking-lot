@@ -3,7 +3,6 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 import java.util.UUID;
 
 /**
@@ -15,10 +14,10 @@ public class ReservationService {
     private final Duration reservationWindow;
 
     public ReservationService(ParkingLot parkingLot, Duration reservationWindow) {
-        this.parkingLot = Objects.requireNonNull(parkingLot, "parkingLot");
-        this.reservationWindow = Objects.requireNonNull(reservationWindow, "reservationWindow");
+        this.parkingLot = Validation.requireNonNull(parkingLot, "parkingLot");
+        this.reservationWindow = Validation.requireNonNull(reservationWindow, "reservationWindow");
         if (reservationWindow.isNegative() || reservationWindow.isZero()) {
-            throw new IllegalArgumentException("reservationWindow must be positive");
+            throw new IllegalArgumentException("reservationWindow must be greater than zero");
         }
         this.reservations = new ArrayList<>();
     }
@@ -36,12 +35,29 @@ public class ReservationService {
     }
 
     public Reservation reserve(Driver driver, Vehicle vehicle) {
-        Objects.requireNonNull(driver, "driver");
-        Objects.requireNonNull(vehicle, "vehicle");
+        Validation.requireNonNull(driver, "driver");
+        Validation.requireNonNull(vehicle, "vehicle");
         boolean ownedVehicle = driver.getVehicles().stream()
-            .anyMatch(item -> item.getPlate().equals(vehicle.getPlate()));
+            .anyMatch(item -> item.getPlate().equalsIgnoreCase(vehicle.getPlate())
+                && item.getType() == vehicle.getType());
         if (!ownedVehicle) {
             throw new IllegalArgumentException("The vehicle is not registered to this driver");
+        }
+        boolean activeReservationExists = reservations.stream()
+            .anyMatch(reservation -> (reservation.getStatus() == ReservationStatus.RESERVED
+                    || reservation.getStatus() == ReservationStatus.CHECKED_IN)
+                && reservation.getDriverId().equals(driver.getId())
+                && reservation.getPlate().equalsIgnoreCase(vehicle.getPlate()));
+        if (activeReservationExists) {
+            throw new IllegalStateException("This vehicle already has an active reservation");
+        }
+
+        Instant arrivalAt = Instant.now();
+        Instant expiresAt;
+        try {
+            expiresAt = arrivalAt.plus(reservationWindow);
+        } catch (ArithmeticException | java.time.DateTimeException exception) {
+            throw new IllegalArgumentException("reservationWindow is too large", exception);
         }
 
         ParkingSpace space = parkingLot.assignSpace(vehicle);
@@ -49,7 +65,6 @@ public class ReservationService {
             throw new IllegalStateException("No compatible space is available");
         }
 
-        Instant arrivalAt = Instant.now();
         Reservation reservation = new Reservation(
             UUID.randomUUID().toString(),
             driver.getId(),
@@ -57,16 +72,18 @@ public class ReservationService {
             vehicle.getType(),
             space,
             arrivalAt,
-            arrivalAt.plus(reservationWindow)
+            expiresAt
         );
         reservations.add(reservation);
         return reservation;
     }
 
     public void cancel(Reservation reservation) {
-        if (reservations.contains(Objects.requireNonNull(reservation, "reservation"))) {
-            reservation.cancel();
+        Reservation checkedReservation = Validation.requireNonNull(reservation, "reservation");
+        if (!reservations.contains(checkedReservation)) {
+            throw new IllegalArgumentException("Reservation is not managed by this service");
         }
+        checkedReservation.cancel();
     }
 
     public void expireOverdue() {

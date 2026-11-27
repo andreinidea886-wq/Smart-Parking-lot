@@ -5,7 +5,8 @@ public final class CompatibilityPolicy {
     private CompatibilityPolicy() { }
 
     public static boolean isCompatible(VehicleType vehicle, SpaceType space) {
-        if (vehicle == null || space == null) return false;
+        Validation.requireNonNull(vehicle, "vehicle");
+        Validation.requireNonNull(space, "space");
         switch (vehicle) {
             case STANDARD: return space == SpaceType.STANDARD || space == SpaceType.ACCESSIBLE;
             case MOTORCYCLE: return space == SpaceType.MOTORCYCLE || space == SpaceType.STANDARD;

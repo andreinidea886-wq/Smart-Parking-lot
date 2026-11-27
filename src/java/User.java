@@ -1,4 +1,4 @@
-import java.util.Objects;
+
 
 /**
  * Stores account details shared by the system user roles.
@@ -10,9 +10,9 @@ public abstract class User {
     private final String contact;
 
     protected User(String id, String name, String contact) {
-        this.id = Objects.requireNonNull(id, "id");
-        this.name = Objects.requireNonNull(name, "name");
-        this.contact = Objects.requireNonNull(contact, "contact");
+        this.id = Validation.requireText(id, "id");
+        this.name = Validation.requireText(name, "name");
+        this.contact = Validation.requireText(contact, "contact");
     }
     public String getId() { return id; }
     public String getName() { return name; }

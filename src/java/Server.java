@@ -34,7 +34,7 @@ public final class Server {
     private Server() {}
 
     public static void main(String[] args) throws IOException {
-        int port = Integer.parseInt(setting("PORT", "8080"));
+        int port = parsePort(setting("PORT", "8080"));
         HttpServer server = HttpServer.create(new InetSocketAddress("127.0.0.1", port), 0);
         // Route browser requests through the shared request handler.
         server.createContext("/", Server::handle);
@@ -227,9 +227,22 @@ public final class Server {
         return dot < 0 ? "" : name.substring(dot);
     }
 
+    private static int parsePort(String value) {
+        int port;
+        try {
+            port = Integer.parseInt(value);
+        } catch (NumberFormatException exception) {
+            throw new IllegalArgumentException("PORT must be a number from 1 to 65535", exception);
+        }
+        if (port < 1 || port > 65535) {
+            throw new IllegalArgumentException("PORT must be between 1 and 65535");
+        }
+        return port;
+    }
+
     private static String setting(String key, String fallback) {
         String value = System.getenv(key);
-        return value == null || value.isBlank() ? fallback : value;
+        return value == null ? fallback : Validation.requireText(value, key);
     }
 
     private static void json(HttpExchange exchange, int status, String body) throws IOException {

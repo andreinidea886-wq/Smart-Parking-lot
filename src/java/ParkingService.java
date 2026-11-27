@@ -1,6 +1,6 @@
 import java.time.Instant;
 import java.util.List;
-import java.util.Objects;
+
 
 /**
  * Coordinates space assignment and parking-session start and end.
@@ -10,11 +10,8 @@ public class ParkingService {
     private final ParkingLot parkingLot;
 
     public ParkingService(ParkingLot parkingLot, int maxSessionHours) {
-        this.parkingLot = Objects.requireNonNull(parkingLot, "parkingLot");
-        if (maxSessionHours <= 0) {
-            throw new IllegalArgumentException("maxSessionHours must be positive");
-        }
-        this.maxSessionHours = maxSessionHours;
+        this.parkingLot = Validation.requireNonNull(parkingLot, "parkingLot");
+        this.maxSessionHours = Validation.requirePositive(maxSessionHours, "maxSessionHours");
     }
 
     public int getMaxSessionHours() {
@@ -26,11 +23,11 @@ public class ParkingService {
     }
 
     public List<ParkingSpace> findAvailable(VehicleType type) {
-        return parkingLot.availableSpaces(Objects.requireNonNull(type, "type"));
+        return parkingLot.availableSpaces(Validation.requireNonNull(type, "type"));
     }
 
     public ParkingSession startSession(Vehicle vehicle) {
-        Objects.requireNonNull(vehicle, "vehicle");
+        Validation.requireNonNull(vehicle, "vehicle");
         List<ParkingSpace> spaces = findAvailable(vehicle.getType());
         for (ParkingSpace space : spaces) {
             ParkingSession session = startSession(vehicle, space);
@@ -42,16 +39,23 @@ public class ParkingService {
     }
 
     public ParkingSession startSession(Vehicle vehicle, ParkingSpace space) {
-        Objects.requireNonNull(vehicle, "vehicle");
-        Objects.requireNonNull(space, "space");
-        if (!vehicle.isCompatible(space) || !space.occupy()) {
-            return null;
+        Validation.requireNonNull(vehicle, "vehicle");
+        Validation.requireNonNull(space, "space");
+        if (parkingLot.getSpaces().stream().noneMatch(candidate -> candidate == space)) {
+            throw new IllegalArgumentException("The space does not belong to this parking lot");
         }
+        if (!vehicle.isCompatible(space)) {
+            throw new IllegalArgumentException("The space is not compatible with this vehicle");
+        }
+        if (space.getStatus() != SpaceStatus.AVAILABLE) {
+            throw new IllegalStateException("A walk-in session requires an available space; reserved spaces must check in through a reservation");
+        }
+        space.occupy();
         return new ParkingSession(vehicle, space, Instant.now(), null);
     }
 
     public void endSession(ParkingSession session) {
-        Objects.requireNonNull(session, "session");
+        Validation.requireNonNull(session, "session");
         if (!session.close(Instant.now())) {
             throw new IllegalStateException("The parking session is already closed");
         }

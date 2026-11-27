@@ -1,71 +1,337 @@
-<?xml version="1.0" encoding="utf-8"?>
-<mxfile host="app.diagrams.net" agent="ChatGPT">
-  <diagram id="parking-class-diagram" name="Parking System Class Diagram">
-    <mxGraphModel dx="6678" dy="5661" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2200" pageHeight="1400" math="0" shadow="0">
-      <root>
-        <mxCell id="0" /> <mxCell id="1" parent="0" /> <mxCell id="c_User" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontColor=#1a1a1a;align=center;verticalAlign=top;spacing=4;" value="&lt;div style=&quot;text-align:center;font-style:italic;font-size:11px&quot;&gt;«abstract»&lt;/div&gt;&lt;div style=&quot;font-weight:bold;text-align:center;font-size:14px;padding:4px&quot;&gt;User&lt;/div&gt;&lt;hr/&gt;&lt;div style=&quot;text-align:left;font-size:11px;padding:3px&quot;&gt;- id: String&lt;br/&gt;- name: String&lt;br/&gt;- contact: String&lt;/div&gt;&lt;hr/&gt;&lt;div style=&quot;text-align:left;font-size:11px;padding:3px&quot;&gt;# User(id, name, contact)&lt;br/&gt;+ getId(): String&lt;br/&gt;+ getName(): String&lt;br/&gt;+ getContact(): String&lt;/div&gt;" vertex="1"> <mxGeometry height="214" width="250" x="-615" y="-1200" as="geometry" /> </mxCell>
-        <mxCell id="c_Driver" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontColor=#1a1a1a;align=center;verticalAlign=top;spacing=4;" value="&lt;div style=&quot;font-weight:bold;text-align:center;font-size:14px;padding:4px&quot;&gt;Driver&lt;/div&gt;&lt;hr/&gt;&lt;div style=&quot;text-align:left;font-size:11px;padding:3px&quot;&gt;- vehicles: List&amp;lt;Vehicle&amp;gt;&lt;/div&gt;&lt;hr/&gt;&lt;div style=&quot;text-align:left;font-size:11px;padding:3px&quot;&gt;+ Driver(id, name, contact)&lt;br/&gt;+ getVehicles(): List&amp;lt;Vehicle&amp;gt;&lt;br/&gt;+ addVehicle(vehicle): void&lt;br/&gt;+ removeVehicle(vehicle): boolean&lt;/div&gt;" vertex="1"> <mxGeometry height="160" width="270" x="-130" y="199" as="geometry" /> </mxCell>
-        <mxCell id="c_Administrator" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontColor=#1a1a1a;align=center;verticalAlign=top;spacing=4;" value="&lt;div style=&quot;font-weight:bold;text-align:center;font-size:14px;padding:4px&quot;&gt;Administrator&lt;/div&gt;&lt;hr/&gt;&lt;div style=&quot;text-align:left;font-size:11px;padding:3px&quot;&gt;- role: String&lt;/div&gt;&lt;hr/&gt;&lt;div style=&quot;text-align:left;font-size:11px;padding:3px&quot;&gt;+ Administrator(id, name, contact, role)&lt;br/&gt;+ getRole(): String&lt;br/&gt;+ resolveIncident(incident, note): void&lt;br/&gt;+ updateSpace(space, status): void&lt;/div&gt;" vertex="1"> <mxGeometry height="160" width="290" x="455" y="-1420" as="geometry" /> </mxCell>
-        <mxCell id="c_Attendant" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontColor=#1a1a1a;align=center;verticalAlign=top;spacing=4;" value="&lt;div style=&quot;font-weight:bold;text-align:center;font-size:14px;padding:4px&quot;&gt;Attendant&lt;/div&gt;&lt;hr/&gt;&lt;div style=&quot;text-align:left;font-size:11px;padding:3px&quot;&gt;- assignedSessions: List&amp;lt;ParkingSession&amp;gt;&lt;br/&gt;- parkingService: ParkingService&lt;/div&gt;&lt;hr/&gt;&lt;div style=&quot;text-align:left;font-size:11px;padding:3px&quot;&gt;+ Attendant(id, name, contact, parkingService)&lt;br/&gt;+ getAssignedSessions(): List&amp;lt;ParkingSession&amp;gt;&lt;br/&gt;+ getParkingService(): ParkingService&lt;br/&gt;+ recordEntry(vehicle): ParkingSession&lt;br/&gt;+ recordExit(session): void&lt;br/&gt;+ assistDriver(driver): void&lt;/div&gt;" vertex="1"> <mxGeometry height="214" width="300" x="-110" y="-1133" as="geometry" /> </mxCell>
-        <mxCell id="c_Vehicle" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontColor=#1a1a1a;align=center;verticalAlign=top;spacing=4;" value="&lt;div style=&quot;font-weight:bold;text-align:center;font-size:14px;padding:4px&quot;&gt;Vehicle&lt;/div&gt;&lt;hr/&gt;&lt;div style=&quot;text-align:left;font-size:11px;padding:3px&quot;&gt;- plate: String&lt;br/&gt;- type: VehicleType&lt;/div&gt;&lt;hr/&gt;&lt;div style=&quot;text-align:left;font-size:11px;padding:3px&quot;&gt;+ Vehicle(plate, type)&lt;br/&gt;+ getPlate(): String&lt;br/&gt;+ getType(): VehicleType&lt;br/&gt;+ isCompatible(space): boolean&lt;/div&gt;" vertex="1"> <mxGeometry height="178" width="250" x="2270" y="-290" as="geometry" /> </mxCell>
-        <mxCell id="c_ParkingLot" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontColor=#1a1a1a;align=center;verticalAlign=top;spacing=4;" value="&lt;div style=&quot;font-weight:bold;text-align:center;font-size:14px;padding:4px&quot;&gt;ParkingLot&lt;/div&gt;&lt;hr/&gt;&lt;div style=&quot;text-align:left;font-size:11px;padding:3px&quot;&gt;- name: String&lt;br/&gt;- spaces: List&amp;lt;ParkingSpace&amp;gt;&lt;/div&gt;&lt;hr/&gt;&lt;div style=&quot;text-align:left;font-size:11px;padding:3px&quot;&gt;+ ParkingLot(name, spaces)&lt;br/&gt;+ getName(): String&lt;br/&gt;+ getSpaces(): List&amp;lt;ParkingSpace&amp;gt;&lt;br/&gt;+ availableSpaces(type): List&amp;lt;ParkingSpace&amp;gt;&lt;br/&gt;+ assignSpace(vehicle): ParkingSpace&lt;br/&gt;+ getCapacity(): int&lt;br/&gt;+ getOccupiedCount(): long&lt;/div&gt;" vertex="1"> <mxGeometry height="232" width="270" x="1080" y="-1142" as="geometry" /> </mxCell>
-        <mxCell id="c_Rate" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontColor=#1a1a1a;align=center;verticalAlign=top;spacing=4;" value="&lt;div style=&quot;font-weight:bold;text-align:center;font-size:14px;padding:4px&quot;&gt;Rate&lt;/div&gt;&lt;hr/&gt;&lt;div style=&quot;text-align:left;font-size:11px;padding:3px&quot;&gt;- vehicleType: VehicleType&lt;br/&gt;- hourlyAmount: BigDecimal&lt;/div&gt;&lt;hr/&gt;&lt;div style=&quot;text-align:left;font-size:11px;padding:3px&quot;&gt;+ Rate(vehicleType, hourlyAmount)&lt;br/&gt;+ getVehicleType(): VehicleType&lt;br/&gt;+ getHourlyAmount(): BigDecimal&lt;br/&gt;+ calculate(duration): BigDecimal&lt;/div&gt;" vertex="1"> <mxGeometry height="178" width="250" x="950" y="508" as="geometry" /> </mxCell>
-        <mxCell id="c_Payment" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontColor=#1a1a1a;align=center;verticalAlign=top;spacing=4;" value="&lt;div style=&quot;font-weight:bold;text-align:center;font-size:14px;padding:4px&quot;&gt;Payment&lt;/div&gt;&lt;hr/&gt;&lt;div style=&quot;text-align:left;font-size:11px;padding:3px&quot;&gt;- reference: String&lt;br/&gt;- amount: BigDecimal&lt;br/&gt;- method: PaymentMethod&lt;br/&gt;- status: PaymentStatus&lt;br/&gt;- paidAt: Instant&lt;/div&gt;&lt;hr/&gt;&lt;div style=&quot;text-align:left;font-size:11px;padding:3px&quot;&gt;+ recordResult(successful, time): void&lt;br/&gt;+ receipt(): String&lt;/div&gt;" vertex="1"> <mxGeometry height="196" width="260" x="1305" y="359" as="geometry" /> </mxCell>
-        <mxCell id="c_ParkingService" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontColor=#1a1a1a;align=center;verticalAlign=top;spacing=4;" value="&lt;div style=&quot;font-weight:bold;text-align:center;font-size:14px;padding:4px&quot;&gt;ParkingService&lt;/div&gt;&lt;hr/&gt;&lt;div style=&quot;text-align:left;font-size:11px;padding:3px&quot;&gt;- maxSessionHours: int&lt;br/&gt;- parkingLot: ParkingLot&lt;/div&gt;&lt;hr/&gt;&lt;div style=&quot;text-align:left;font-size:11px;padding:3px&quot;&gt;+ getMaxSessionHours(): int&lt;br/&gt;+ getParkingLot(): ParkingLot&lt;br/&gt;+ findAvailable(type): List&amp;lt;ParkingSpace&amp;gt;&lt;br/&gt;+ startSession(vehicle): ParkingSession&lt;br/&gt;+ startSession(vehicle, space): ParkingSession&lt;br/&gt;+ endSession(session): void&lt;/div&gt;" vertex="1"> <mxGeometry height="214" width="300" x="455" y="-1133" as="geometry" /> </mxCell>
-        <mxCell id="JNDRZ6uKDK9orJE2o6Cf-11" edge="1" parent="1" source="c_PaymentService" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;entryX=-0.001;entryY=0.675;entryDx=0;entryDy=0;defaultLabelBackgroundColor=page;labelPadding=0 4;curved=0;strokeColor=light-dark(#666666, #ededed);entryPerimeter=0;" target="c_Rate"> <mxGeometry relative="1" x="-0.0682" as="geometry"> <Array as="points"> <mxPoint x="850" y="-110" /> <mxPoint x="850" y="628.2" /> </Array> </mxGeometry> </mxCell>
-        <mxCell id="c_PaymentService" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontColor=#1a1a1a;align=center;verticalAlign=top;spacing=4;" value="&lt;div style=&quot;font-weight:bold;text-align:center;font-size:14px;padding:4px&quot;&gt;PaymentService&lt;/div&gt;&lt;hr/&gt;&lt;div style=&quot;text-align:left;font-size:11px;padding:3px&quot;&gt;- provider: String&lt;br/&gt;- rates: Map&lt;br/&gt;- payments: List&amp;lt;Payment&amp;gt;&lt;br/&gt;- paidSessions: Set&amp;lt;ParkingSession&amp;gt;&lt;/div&gt;&lt;hr/&gt;&lt;div style=&quot;text-align:left;font-size:11px;padding:3px&quot;&gt;+ getProvider(): String&lt;br/&gt;+ getRates(): Map&lt;br/&gt;+ getPayments(): List&amp;lt;Payment&amp;gt;&lt;br/&gt;+ process(session, method): Payment&lt;br/&gt;+ issueReceipt(payment): String&lt;/div&gt;" vertex="1"> <mxGeometry height="232" width="300" x="450" y="-260" as="geometry" /> </mxCell>
-        <mxCell id="c_CompatibilityPolicy" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontColor=#1a1a1a;align=center;verticalAlign=top;spacing=4;" value="&lt;div style=&quot;font-weight:bold;text-align:center;font-size:14px;padding:4px&quot;&gt;CompatibilityPolicy&lt;/div&gt;&lt;hr/&gt;&lt;div style=&quot;text-align:left;font-size:11px;padding:3px&quot;&gt;&lt;/div&gt;&lt;hr/&gt;&lt;div style=&quot;text-align:left;font-size:11px;padding:3px&quot;&gt;+ isCompatible(vehicle, space): boolean&lt;/div&gt;" vertex="1"> <mxGeometry height="88" width="270" x="2620" y="-350" as="geometry" /> </mxCell>
-        <mxCell id="c_Validation" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontColor=#1a1a1a;align=center;verticalAlign=top;spacing=4;" value="&lt;div style=&quot;font-weight:bold;text-align:center;font-size:14px;padding:4px&quot;&gt;Validation&lt;/div&gt;&lt;hr/&gt;&lt;div style=&quot;text-align:left;font-size:11px;padding:3px&quot;&gt;&lt;/div&gt;&lt;hr/&gt;&lt;div style=&quot;text-align:left;font-size:11px;padding:3px&quot;&gt;+ requireText(value, fieldName): String&lt;br/&gt;+ requireNonNull(value, fieldName): T&lt;br/&gt;+ requireNotFuture(value, fieldName): Instant&lt;br/&gt;+ requirePositive(value, fieldName): int&lt;/div&gt;" vertex="1"> <mxGeometry height="142" width="280" x="-645" y="-1692" as="geometry" /> </mxCell>
-        <mxCell id="c_ConsoleMain" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontColor=#1a1a1a;align=center;verticalAlign=top;spacing=4;" value="&lt;div style=&quot;font-weight:bold;text-align:center;font-size:14px;padding:4px&quot;&gt;ConsoleMain&lt;/div&gt;&lt;hr/&gt;&lt;div style=&quot;text-align:left;font-size:11px;padding:3px&quot;&gt;&lt;/div&gt;&lt;hr/&gt;&lt;div style=&quot;text-align:left;font-size:11px;padding:3px&quot;&gt;+ main(args): void&lt;/div&gt;" vertex="1"> <mxGeometry height="88" width="270" x="-130" y="-420" as="geometry" /> </mxCell>
-        <mxCell id="c_Server" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontColor=#1a1a1a;align=center;verticalAlign=top;spacing=4;" value="&lt;div style=&quot;font-weight:bold;text-align:center;font-size:14px;padding:4px&quot;&gt;Server&lt;/div&gt;&lt;hr/&gt;&lt;div style=&quot;text-align:left;font-size:11px;padding:3px&quot;&gt;- ROOT: Path&lt;br/&gt;- COOKIE: String&lt;br/&gt;- SESSION_LIFETIME_SECONDS: long&lt;br/&gt;- ADMIN_USER: String&lt;br/&gt;- ADMIN_PASSWORD: String&lt;br/&gt;- SESSIONS: Map&lt;br/&gt;- RANDOM: SecureRandom&lt;br/&gt;- CONTENT_TYPES: Map&lt;/div&gt;&lt;hr/&gt;&lt;div style=&quot;text-align:left;font-size:11px;padding:3px&quot;&gt;+ main(args): void&lt;/div&gt;" vertex="1"> <mxGeometry height="232" width="300" x="-640" y="-1501" as="geometry" /> </mxCell>
-        <mxCell id="e_SpaceType" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontColor=#1a1a1a;align=center;verticalAlign=top;spacing=4;" value="&lt;div style=&quot;font-weight:bold;text-align:center;padding:4px&quot;&gt;SpaceType&lt;/div&gt;&lt;div style=&quot;text-align:center;font-style:italic;font-size:11px&quot;&gt;«enumeration»&lt;/div&gt;&lt;hr/&gt;&lt;div style=&quot;text-align:left;font-size:11px;padding:4px&quot;&gt;STANDARD&lt;br/&gt;MOTORCYCLE&lt;br/&gt;EV&lt;br/&gt;ACCESSIBLE&lt;/div&gt;" vertex="1"> <mxGeometry height="134" width="250" x="2660" y="-1120" as="geometry" /> </mxCell>
-        <mxCell id="e_SpaceStatus" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontColor=#1a1a1a;align=center;verticalAlign=top;spacing=4;" value="&lt;div style=&quot;font-weight:bold;text-align:center;padding:4px&quot;&gt;SpaceStatus&lt;/div&gt;&lt;div style=&quot;text-align:center;font-style:italic;font-size:11px&quot;&gt;«enumeration»&lt;/div&gt;&lt;hr/&gt;&lt;div style=&quot;text-align:left;font-size:11px;padding:4px&quot;&gt;AVAILABLE&lt;br/&gt;RESERVED&lt;br/&gt;OCCUPIED&lt;br/&gt;OUT_OF_SERVICE&lt;/div&gt;" vertex="1"> <mxGeometry height="134" width="250" x="2660" y="-910" as="geometry" /> </mxCell>
-        <mxCell id="e_PaymentMethod" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontColor=#1a1a1a;align=center;verticalAlign=top;spacing=4;" value="&lt;div style=&quot;font-weight:bold;text-align:center;padding:4px&quot;&gt;PaymentMethod&lt;/div&gt;&lt;div style=&quot;text-align:center;font-style:italic;font-size:11px&quot;&gt;«enumeration»&lt;/div&gt;&lt;hr/&gt;&lt;div style=&quot;text-align:left;font-size:11px;padding:4px&quot;&gt;MAYA&lt;br/&gt;PAYPAL&lt;br/&gt;GCASH&lt;br/&gt;GOMO&lt;br/&gt;CASH&lt;br/&gt;OTHER_E_WALLET&lt;/div&gt;" vertex="1"> <mxGeometry height="170" width="250" x="1590" y="730" as="geometry" /> </mxCell>
-        <mxCell id="e_IncidentStatus" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontColor=#1a1a1a;align=center;verticalAlign=top;spacing=4;" value="&lt;div style=&quot;font-weight:bold;text-align:center;padding:4px&quot;&gt;IncidentStatus&lt;/div&gt;&lt;div style=&quot;text-align:center;font-style:italic;font-size:11px&quot;&gt;«enumeration»&lt;/div&gt;&lt;hr/&gt;&lt;div style=&quot;text-align:left;font-size:11px;padding:4px&quot;&gt;OPEN&lt;br/&gt;RESOLVED&lt;/div&gt;" vertex="1"> <mxGeometry height="98" width="250" x="1670" y="-1550" as="geometry" /> </mxCell>
-        <mxCell id="edge1" edge="1" parent="1" source="c_User" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;fontSize=10;endArrow=block;endFill=0;" target="c_Driver" value=""> <mxGeometry relative="1" x="0.0581" as="geometry"> <Array as="points"> <mxPoint x="-480" y="279" /> </Array> </mxGeometry> </mxCell>
-        <mxCell id="edge2" edge="1" parent="1" source="c_User" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;fontSize=10;endArrow=block;endFill=0;" target="c_Administrator" value=""> <mxGeometry relative="1" as="geometry"> <Array as="points"> <mxPoint x="-150" y="-1130" /> <mxPoint x="-150" y="-1340" /> </Array> </mxGeometry> </mxCell>
-        <mxCell id="edge3" edge="1" parent="1" source="c_User" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;fontSize=10;endArrow=block;endFill=0;" target="c_Attendant" value=""> <mxGeometry relative="1" x="-0.1142" as="geometry"> <Array as="points"> <mxPoint x="-237.5" y="-1060" /> <mxPoint x="-237.5" y="-1026" /> </Array> </mxGeometry> </mxCell>
-        <mxCell id="edge4" edge="1" parent="1" source="c_Driver" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;fontSize=10;startArrow=diamond;startFill=0;endArrow=none;" target="c_Vehicle" value="registers"> <mxGeometry relative="1" x="-0.093" as="geometry"> <mxPoint as="offset" /> <Array as="points"> <mxPoint x="2395" y="300" /> </Array> </mxGeometry> </mxCell>
-        <mxCell id="edge5" edge="1" parent="1" source="c_ParkingLot" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;fontSize=10;startArrow=diamond;startFill=1;endArrow=none;" target="c_ParkingSpace" value="contains"> <mxGeometry relative="1" x="0.1424" as="geometry"> <Array as="points"> <mxPoint x="1620" y="-1080" /> <mxPoint x="1620" y="-960" /> </Array> </mxGeometry> </mxCell>
-        <mxCell id="edge7" edge="1" parent="1" source="c_ParkingSession" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;fontSize=10;endArrow=open;" target="c_Vehicle" value="parks"> <mxGeometry relative="1" as="geometry" /> </mxCell>
-        <mxCell id="edge8" edge="1" parent="1" source="c_ParkingSession" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;fontSize=10;endArrow=open;" target="c_ParkingSpace" value="occupies"> <mxGeometry relative="1" x="0.1121" as="geometry"> <Array as="points"> <mxPoint x="1890" y="-700" /> </Array> </mxGeometry> </mxCell>
-        <mxCell id="edge9" edge="1" parent="1" source="c_Incident" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;fontSize=10;endArrow=open;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=-0.01;entryY=0.142;entryDx=0;entryDy=0;entryPerimeter=0;" target="c_ParkingSpace" value="may concern"> <mxGeometry relative="1" x="-0.1479" as="geometry"> <Array as="points"> <mxPoint x="1750" y="-1393" /> <mxPoint x="1750" y="-1051.7" /> </Array> </mxGeometry> </mxCell>
-        <mxCell id="edge10" edge="1" parent="1" source="c_Attendant" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;fontSize=10;endArrow=open;" target="c_ParkingService" value="uses"> <mxGeometry relative="1" as="geometry" /> </mxCell>
-        <mxCell id="edge11" edge="1" parent="1" source="c_ParkingService" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;fontSize=10;endArrow=open;" target="c_ParkingLot" value="manages"> <mxGeometry relative="1" x="-0.1077" as="geometry"> <mxPoint as="offset" /> </mxGeometry> </mxCell>
-        <mxCell id="edge12" edge="1" parent="1" source="c_ParkingService" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;fontSize=10;endArrow=open;" target="c_ParkingSession" value="starts / ends"> <mxGeometry relative="1" x="0.0814" as="geometry"> <Array as="points"> <mxPoint x="620" y="-800" /> <mxPoint x="1140" y="-800" /> </Array> </mxGeometry> </mxCell>
-        <mxCell id="edge13" edge="1" parent="1" source="c_ReservationService" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;fontSize=10;endArrow=open;" target="c_ParkingLot" value="uses"> <mxGeometry relative="1" as="geometry" /> </mxCell>
-        <mxCell id="edge15" edge="1" parent="1" source="c_PaymentService" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;fontSize=10;endArrow=open;" target="c_ParkingSession" value="charges"> <mxGeometry relative="1" x="0.0717" as="geometry"> <Array as="points"> <mxPoint x="1000" y="-180" /> <mxPoint x="1000" y="-470" /> <mxPoint x="1140" y="-470" /> </Array> </mxGeometry> </mxCell>
-        <mxCell id="edge18" edge="1" parent="1" source="c_Vehicle" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;fontSize=10;endArrow=open;" target="e_VehicleType" value=""> <mxGeometry relative="1" x="-0.0305" as="geometry"> <Array as="points"> <mxPoint x="3350" y="-170" /> </Array> </mxGeometry> </mxCell>
-        <mxCell id="edge19" edge="1" parent="1" source="c_ParkingSpace" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;fontSize=10;endArrow=open;" target="e_SpaceType" value=""> <mxGeometry relative="1" x="-0.0291" as="geometry"> <Array as="points"> <mxPoint x="2385" y="-950" /> <mxPoint x="2385" y="-1053" /> </Array> </mxGeometry> </mxCell>
-        <mxCell id="edge20" edge="1" parent="1" source="c_ParkingSpace" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;fontSize=10;endArrow=open;" target="e_SpaceStatus" value=""> <mxGeometry relative="1" as="geometry"> <Array as="points"> <mxPoint x="2385" y="-880" /> <mxPoint x="2385" y="-843" /> </Array> </mxGeometry> </mxCell>
-        <mxCell id="edge21" edge="1" parent="1" source="c_Reservation" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;fontSize=10;endArrow=open;" target="e_VehicleType" value=""> <mxGeometry relative="1" x="-0.0283" as="geometry"> <Array as="points"> <mxPoint x="1185" y="180" /> <mxPoint x="3400" y="180" /> </Array> </mxGeometry> </mxCell>
-        <mxCell id="edge23" edge="1" parent="1" source="c_ParkingSession" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;fontSize=10;endArrow=open;" target="e_SessionStatus" value=""> <mxGeometry relative="1" as="geometry" /> </mxCell>
-        <mxCell id="edge24" edge="1" parent="1" source="c_Rate" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;fontSize=10;endArrow=open;" target="e_VehicleType" value=""> <mxGeometry relative="1" x="0.0603" as="geometry"> <Array as="points"> <mxPoint x="1180" y="430" /> <mxPoint x="940" y="430" /> <mxPoint x="940" y="-430" /> <mxPoint x="3250" y="-430" /> </Array> </mxGeometry> </mxCell>
-        <mxCell id="edge25" edge="1" parent="1" source="c_Payment" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;fontSize=10;endArrow=open;" target="e_PaymentMethod" value=""> <mxGeometry relative="1" as="geometry"> <Array as="points"> <mxPoint x="1435" y="815" /> </Array> </mxGeometry> </mxCell>
-        <mxCell id="edge26" edge="1" parent="1" source="c_Payment" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;fontSize=10;endArrow=open;" target="e_PaymentStatus" value=""> <mxGeometry relative="1" as="geometry"> <Array as="points"> <mxPoint x="1670" y="457" /> </Array> </mxGeometry> </mxCell>
-        <mxCell id="edge27" edge="1" parent="1" source="c_Incident" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;fontSize=10;endArrow=open;" target="e_IncidentStatus" value=""> <mxGeometry relative="1" x="-0.1202" as="geometry"> <Array as="points"> <mxPoint x="1505" y="-1440" /> <mxPoint x="1505" y="-1501" /> </Array> </mxGeometry> </mxCell>
-        <mxCell id="edge28" edge="1" parent="1" source="c_Administrator" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;fontSize=10;dashed=1;endArrow=open;" target="c_Incident" value="resolves"> <mxGeometry relative="1" as="geometry" /> </mxCell>
-        <mxCell id="edge29" edge="1" parent="1" source="c_Administrator" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;fontSize=10;dashed=1;endArrow=open;" target="c_ParkingSpace" value="updates"> <mxGeometry relative="1" x="-0.0325" as="geometry"> <Array as="points"> <mxPoint x="910" y="-1310" /> <mxPoint x="910" y="-1220" /> <mxPoint x="1680" y="-1220" /> <mxPoint x="1680" y="-1000" /> </Array> </mxGeometry> </mxCell>
-        <mxCell id="edge30" edge="1" parent="1" source="c_Vehicle" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;fontSize=10;dashed=1;endArrow=open;" target="c_CompatibilityPolicy" value="checks compatibility"> <mxGeometry relative="1" as="geometry" /> </mxCell>
-        <mxCell id="edge31" edge="1" parent="1" source="c_ParkingLot" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;fontSize=10;dashed=1;endArrow=open;" target="c_CompatibilityPolicy" value="checks compatibility"> <mxGeometry relative="1" x="-0.0474" as="geometry"> <Array as="points"> <mxPoint x="1490" y="-950" /> <mxPoint x="1490" y="-720" /> <mxPoint x="2755" y="-720" /> </Array> </mxGeometry> </mxCell>
-        <mxCell id="edge33" edge="1" parent="1" source="c_ConsoleMain" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;fontSize=10;dashed=1;endArrow=open;" target="c_PaymentService" value="calls"> <mxGeometry relative="1" x="0.102" as="geometry"> <Array as="points"> <mxPoint x="550" y="-350" /> </Array> </mxGeometry> </mxCell>
-        <mxCell id="edge35" edge="1" parent="1" source="c_ConsoleMain" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;fontSize=10;dashed=1;endArrow=open;entryX=-0.003;entryY=0.349;entryDx=0;entryDy=0;entryPerimeter=0;" target="c_Rate" value="creates demo rates"> <mxGeometry relative="1" x="0.2252" as="geometry"> <Array as="points"> <mxPoint x="10" y="100" /> <mxPoint x="410" y="100" /> <mxPoint x="410" y="570.1" /> </Array> </mxGeometry> </mxCell>
-        <mxCell id="title" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=26;fontStyle=1;strokeColor=none;fillColor=none;strokeWidth=1;perimeterSpacing=0;" value="&lt;div style=&quot;text-align: center;&quot;&gt;&lt;b style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;Smart Parking Lot — UML Class Diagram&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;text-align: center;&quot;&gt;&lt;span style=&quot;color: rgb(23, 54, 93); font-size: 22px; font-weight: 400;&quot;&gt;Core classes, fields, methods, and relationships&lt;/span&gt;&lt;b&gt;&lt;/b&gt;&lt;/div&gt;" vertex="1"> <mxGeometry height="80" width="600" x="800" y="-1830" as="geometry" /> </mxCell>
-        <mxCell id="JNDRZ6uKDK9orJE2o6Cf-1" edge="1" parent="1" source="c_ConsoleMain" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;fontSize=10;dashed=1;endArrow=open;" target="c_ParkingSpace" value=""> <mxGeometry relative="1" x="-0.0425" as="geometry"> <Array as="points"> <mxPoint x="2020" y="-410" /> </Array> <mxPoint x="50" y="1076" as="sourcePoint" /> <mxPoint x="1285" y="192" as="targetPoint" /> </mxGeometry> </mxCell>
-        <mxCell id="c_Incident" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontColor=#1a1a1a;align=center;verticalAlign=top;spacing=4;" value="&lt;div style=&quot;font-weight:bold;text-align:center;font-size:14px;padding:4px&quot;&gt;Incident&lt;/div&gt;&lt;hr/&gt;&lt;div style=&quot;text-align:left;font-size:11px;padding:3px&quot;&gt;- id: String&lt;br/&gt;- type: String&lt;br/&gt;- details: String&lt;br/&gt;- space: ParkingSpace&lt;br/&gt;- createdAt: Instant&lt;br/&gt;- status: IncidentStatus&lt;br/&gt;- resolution: String&lt;/div&gt;&lt;hr/&gt;&lt;div style=&quot;text-align:left;font-size:11px;padding:3px&quot;&gt;+ resolve(note): void&lt;/div&gt;" vertex="1"> <mxGeometry height="214" width="260" x="1080" y="-1500" as="geometry" /> </mxCell>
-        <mxCell id="c_ParkingSpace" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontColor=#1a1a1a;align=center;verticalAlign=top;spacing=4;" value="&lt;div style=&quot;font-weight:bold;text-align:center;font-size:14px;padding:4px&quot;&gt;ParkingSpace&lt;/div&gt;&lt;hr/&gt;&lt;div style=&quot;text-align:left;font-size:11px;padding:3px&quot;&gt;- id: String&lt;br/&gt;- level: String&lt;br/&gt;- type: SpaceType&lt;br/&gt;- status: SpaceStatus&lt;/div&gt;&lt;hr/&gt;&lt;div style=&quot;text-align:left;font-size:11px;padding:3px&quot;&gt;+ ParkingSpace(id, level, type)&lt;br/&gt;+ ParkingSpace(id, level, type, status)&lt;br/&gt;+ getId(): String&lt;br/&gt;+ getLevel(): String&lt;br/&gt;+ getType(): SpaceType&lt;br/&gt;+ getStatus(): SpaceStatus&lt;br/&gt;+ reserve(): boolean&lt;br/&gt;+ occupy(): boolean&lt;br/&gt;+ release(): void&lt;br/&gt;+ setOutOfService(): void&lt;br/&gt;+ setStatus(status): void&lt;/div&gt;" vertex="1"> <mxGeometry height="340" width="290" x="1820" y="-1100" as="geometry" /> </mxCell>
-        <mxCell id="JNDRZ6uKDK9orJE2o6Cf-4" edge="1" parent="1" source="c_ConsoleMain" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;fontSize=10;dashed=1;endArrow=open;" target="e_VehicleType" value=""> <mxGeometry relative="1" x="0.0081" as="geometry"> <Array as="points"> <mxPoint x="3290" y="-380" /> </Array> <mxPoint x="-370" y="1298" as="sourcePoint" /> <mxPoint x="490" y="-320" as="targetPoint" /> </mxGeometry> </mxCell>
-        <mxCell id="e_VehicleType" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontColor=#1a1a1a;align=center;verticalAlign=top;spacing=4;" value="&lt;div style=&quot;font-weight:bold;text-align:center;padding:4px&quot;&gt;VehicleType&lt;/div&gt;&lt;div style=&quot;text-align:center;font-style:italic;font-size:11px&quot;&gt;«enumeration»&lt;/div&gt;&lt;hr/&gt;&lt;div style=&quot;text-align:left;font-size:11px;padding:4px&quot;&gt;STANDARD&lt;br/&gt;MOTORCYCLE&lt;br/&gt;EV&lt;br/&gt;ACCESSIBLE&lt;/div&gt;" vertex="1"> <mxGeometry height="134" width="250" x="3190" y="-590" as="geometry" /> </mxCell>
-        <mxCell id="e_PaymentStatus" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontColor=#1a1a1a;align=center;verticalAlign=top;spacing=4;" value="&lt;div style=&quot;font-weight:bold;text-align:center;padding:4px&quot;&gt;PaymentStatus&lt;/div&gt;&lt;div style=&quot;text-align:center;font-style:italic;font-size:11px&quot;&gt;«enumeration»&lt;/div&gt;&lt;hr/&gt;&lt;div style=&quot;text-align:left;font-size:11px;padding:4px&quot;&gt;PENDING&lt;br/&gt;PAID&lt;br/&gt;FAILED&lt;/div&gt;" vertex="1"> <mxGeometry height="116" width="250" x="1590" y="570" as="geometry" /> </mxCell>
-        <mxCell id="c_ReservationService" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontColor=#1a1a1a;align=center;verticalAlign=top;spacing=4;" value="&lt;div style=&quot;font-weight:bold;text-align:center;font-size:14px;padding:4px&quot;&gt;ReservationService&lt;/div&gt;&lt;hr/&gt;&lt;div style=&quot;text-align:left;font-size:11px;padding:3px&quot;&gt;- reservations: List&amp;lt;Reservation&amp;gt;&lt;br/&gt;- parkingLot: ParkingLot&lt;br/&gt;- reservationWindow: Duration&lt;/div&gt;&lt;hr/&gt;&lt;div style=&quot;text-align:left;font-size:11px;padding:3px&quot;&gt;+ getReservations(): List&amp;lt;Reservation&amp;gt;&lt;br/&gt;+ getParkingLot(): ParkingLot&lt;br/&gt;+ getReservationWindow(): Duration&lt;br/&gt;+ reserve(driver, vehicle): Reservation&lt;br/&gt;+ cancel(reservation): void&lt;br/&gt;+ expireOverdue(): void&lt;/div&gt;" vertex="1"> <mxGeometry height="232" width="300" x="455" y="-742" as="geometry" /> </mxCell>
-        <mxCell id="c_ParkingSession" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontColor=#1a1a1a;align=center;verticalAlign=top;spacing=4;" value="&lt;div style=&quot;font-weight:bold;text-align:center;font-size:14px;padding:4px&quot;&gt;ParkingSession&lt;/div&gt;&lt;hr/&gt;&lt;div style=&quot;text-align:left;font-size:11px;padding:3px&quot;&gt;- vehicle: Vehicle&lt;br/&gt;- space: ParkingSpace&lt;br/&gt;- startedAt: Instant&lt;br/&gt;- reservationReference: String&lt;br/&gt;- endedAt: Instant&lt;br/&gt;- status: SessionStatus&lt;br/&gt;- reminderSent: boolean&lt;/div&gt;&lt;hr/&gt;&lt;div style=&quot;text-align:left;font-size:11px;padding:3px&quot;&gt;+ duration(): Duration&lt;br/&gt;+ markReminderSent(): void&lt;br/&gt;+ close(endTime): boolean&lt;/div&gt;" vertex="1"> <mxGeometry height="250" width="290" x="1065" y="-751" as="geometry" /> </mxCell>
-        <mxCell id="e_SessionStatus" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontColor=#1a1a1a;align=center;verticalAlign=top;spacing=4;" value="&lt;div style=&quot;font-weight:bold;text-align:center;padding:4px&quot;&gt;SessionStatus&lt;/div&gt;&lt;div style=&quot;text-align:center;font-style:italic;font-size:11px&quot;&gt;«enumeration»&lt;/div&gt;&lt;hr/&gt;&lt;div style=&quot;text-align:left;font-size:11px;padding:4px&quot;&gt;ACTIVE&lt;br/&gt;COMPLETED&lt;/div&gt;" vertex="1"> <mxGeometry height="98" width="250" x="1590" y="-675" as="geometry" /> </mxCell>
-        <mxCell id="JNDRZ6uKDK9orJE2o6Cf-9" edge="1" parent="1" source="c_Reservation" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;fontSize=10;endArrow=open;entryX=0.006;entryY=0.595;entryDx=0;entryDy=0;entryPerimeter=0;" target="e_ReservationStatus" value=""> <mxGeometry relative="1" x="-0.1909" as="geometry"> <Array as="points"> <mxPoint x="1510" y="-120" /> <mxPoint x="1510" y="-199.6" /> </Array> <mxPoint x="1360" y="-108" as="sourcePoint" /> <mxPoint x="1965" y="-760" as="targetPoint" /> </mxGeometry> </mxCell>
-        <mxCell id="e_ReservationStatus" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontColor=#1a1a1a;align=center;verticalAlign=top;spacing=4;" value="&lt;div style=&quot;font-weight:bold;text-align:center;padding:4px&quot;&gt;ReservationStatus&lt;/div&gt;&lt;div style=&quot;text-align:center;font-style:italic;font-size:11px&quot;&gt;«enumeration»&lt;/div&gt;&lt;hr/&gt;&lt;div style=&quot;text-align:left;font-size:11px;padding:4px&quot;&gt;RESERVED&lt;br/&gt;CHECKED_IN&lt;br/&gt;COMPLETED&lt;br/&gt;CANCELLED&lt;br/&gt;EXPIRED&lt;/div&gt;" vertex="1"> <mxGeometry height="152" width="250" x="1590" y="-290" as="geometry" /> </mxCell>
-        <mxCell id="c_Reservation" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontColor=#1a1a1a;align=center;verticalAlign=top;spacing=4;" value="&lt;div style=&quot;font-weight:bold;text-align:center;font-size:14px;padding:4px&quot;&gt;Reservation&lt;/div&gt;&lt;hr/&gt;&lt;div style=&quot;text-align:left;font-size:11px;padding:3px&quot;&gt;- reference: String&lt;br/&gt;- driverId: String&lt;br/&gt;- plate: String&lt;br/&gt;- vehicleType: VehicleType&lt;br/&gt;- space: ParkingSpace&lt;br/&gt;- arrivalAt: Instant&lt;br/&gt;- expiresAt: Instant&lt;br/&gt;- status: ReservationStatus&lt;/div&gt;&lt;hr/&gt;&lt;div style=&quot;text-align:left;font-size:11px;padding:3px&quot;&gt;+ checkIn(): boolean&lt;br/&gt;+ cancel(): void&lt;br/&gt;+ expire(): void&lt;br/&gt;+ expireIfOverdue(now): boolean&lt;br/&gt;+ complete(): void&lt;/div&gt;" vertex="1"> <mxGeometry height="304" width="290" x="1040" y="-280" as="geometry" /> </mxCell>
-        <mxCell id="edge_reservation_manages" edge="1" parent="1" source="c_ReservationService" target="c_Reservation" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;fontSize=10;endArrow=open;" value="manages"> <mxGeometry relative="1" as="geometry" /> </mxCell>
-        <mxCell id="edge_reservation_space" edge="1" parent="1" source="c_Reservation" target="c_ParkingSpace" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;fontSize=10;endArrow=open;" value="reserves"> <mxGeometry relative="1" as="geometry" /> </mxCell>
-      </root>
-    </mxGraphModel>
-  </diagram>
+<mxfile host="65bd71144e">
+    <diagram id="parking-class-diagram" name="Parking System Class Diagram">
+        <mxGraphModel dx="6463" dy="6900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2200" pageHeight="1400" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="c_User" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontColor=#1a1a1a;align=center;verticalAlign=top;spacing=4;" value="&lt;div style=&quot;text-align:center;font-style:italic;font-size:11px&quot;&gt;«abstract»&lt;/div&gt;&lt;div style=&quot;font-weight:bold;text-align:center;font-size:14px;padding:4px&quot;&gt;User&lt;/div&gt;&lt;hr/&gt;&lt;div style=&quot;text-align:left;font-size:11px;padding:3px&quot;&gt;- id: String&lt;br/&gt;- name: String&lt;br/&gt;- contact: String&lt;/div&gt;&lt;hr/&gt;&lt;div style=&quot;text-align:left;font-size:11px;padding:3px&quot;&gt;# User(id, name, contact)&lt;br/&gt;+ getId(): String&lt;br/&gt;+ getName(): String&lt;br/&gt;+ getContact(): String&lt;/div&gt;" vertex="1">
+                    <mxGeometry height="214" width="250" x="-615" y="-1200" as="geometry"/>
+                </mxCell>
+                <mxCell id="c_Driver" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontColor=#1a1a1a;align=center;verticalAlign=top;spacing=4;" value="&lt;div style=&quot;font-weight:bold;text-align:center;font-size:14px;padding:4px&quot;&gt;Driver&lt;/div&gt;&lt;hr/&gt;&lt;div style=&quot;text-align:left;font-size:11px;padding:3px&quot;&gt;- vehicles: List&amp;lt;Vehicle&amp;gt;&lt;/div&gt;&lt;hr/&gt;&lt;div style=&quot;text-align:left;font-size:11px;padding:3px&quot;&gt;+ Driver(id, name, contact)&lt;br/&gt;+ getVehicles(): List&amp;lt;Vehicle&amp;gt;&lt;br/&gt;+ addVehicle(vehicle): void&lt;br/&gt;+ removeVehicle(vehicle): boolean&lt;/div&gt;" vertex="1">
+                    <mxGeometry height="160" width="270" x="-130" y="199" as="geometry"/>
+                </mxCell>
+                <mxCell id="c_Administrator" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontColor=#1a1a1a;align=center;verticalAlign=top;spacing=4;" value="&lt;div style=&quot;font-weight:bold;text-align:center;font-size:14px;padding:4px&quot;&gt;Administrator&lt;/div&gt;&lt;hr/&gt;&lt;div style=&quot;text-align:left;font-size:11px;padding:3px&quot;&gt;- role: String&lt;/div&gt;&lt;hr/&gt;&lt;div style=&quot;text-align:left;font-size:11px;padding:3px&quot;&gt;+ Administrator(id, name, contact, role)&lt;br/&gt;+ getRole(): String&lt;br/&gt;+ resolveIncident(incident, note): void&lt;br/&gt;+ updateSpace(space, status): void&lt;/div&gt;" vertex="1">
+                    <mxGeometry height="160" width="290" x="455" y="-1420" as="geometry"/>
+                </mxCell>
+                <mxCell id="c_Attendant" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontColor=#1a1a1a;align=center;verticalAlign=top;spacing=4;" value="&lt;div style=&quot;font-weight:bold;text-align:center;font-size:14px;padding:4px&quot;&gt;Attendant&lt;/div&gt;&lt;hr/&gt;&lt;div style=&quot;text-align:left;font-size:11px;padding:3px&quot;&gt;- assignedSessions: List&amp;lt;ParkingSession&amp;gt;&lt;br/&gt;- parkingService: ParkingService&lt;/div&gt;&lt;hr/&gt;&lt;div style=&quot;text-align:left;font-size:11px;padding:3px&quot;&gt;+ Attendant(id, name, contact, parkingService)&lt;br/&gt;+ getAssignedSessions(): List&amp;lt;ParkingSession&amp;gt;&lt;br/&gt;+ getParkingService(): ParkingService&lt;br/&gt;+ recordEntry(vehicle): ParkingSession&lt;br/&gt;+ recordExit(session): void&lt;br/&gt;+ assistDriver(driver): void&lt;/div&gt;" vertex="1">
+                    <mxGeometry height="214" width="300" x="-110" y="-1133" as="geometry"/>
+                </mxCell>
+                <mxCell id="c_Vehicle" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontColor=#1a1a1a;align=center;verticalAlign=top;spacing=4;" value="&lt;div style=&quot;font-weight:bold;text-align:center;font-size:14px;padding:4px&quot;&gt;Vehicle&lt;/div&gt;&lt;hr/&gt;&lt;div style=&quot;text-align:left;font-size:11px;padding:3px&quot;&gt;- plate: String&lt;br/&gt;- type: VehicleType&lt;/div&gt;&lt;hr/&gt;&lt;div style=&quot;text-align:left;font-size:11px;padding:3px&quot;&gt;+ Vehicle(plate, type)&lt;br/&gt;+ getPlate(): String&lt;br/&gt;+ getType(): VehicleType&lt;br/&gt;+ isCompatible(space): boolean&lt;/div&gt;" vertex="1">
+                    <mxGeometry height="178" width="250" x="2270" y="-290" as="geometry"/>
+                </mxCell>
+                <mxCell id="c_ParkingLot" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontColor=#1a1a1a;align=center;verticalAlign=top;spacing=4;" value="&lt;div style=&quot;font-weight:bold;text-align:center;font-size:14px;padding:4px&quot;&gt;ParkingLot&lt;/div&gt;&lt;hr/&gt;&lt;div style=&quot;text-align:left;font-size:11px;padding:3px&quot;&gt;- name: String&lt;br/&gt;- spaces: List&amp;lt;ParkingSpace&amp;gt;&lt;/div&gt;&lt;hr/&gt;&lt;div style=&quot;text-align:left;font-size:11px;padding:3px&quot;&gt;+ ParkingLot(name, spaces)&lt;br/&gt;+ getName(): String&lt;br/&gt;+ getSpaces(): List&amp;lt;ParkingSpace&amp;gt;&lt;br/&gt;+ availableSpaces(type): List&amp;lt;ParkingSpace&amp;gt;&lt;br/&gt;+ assignSpace(vehicle): ParkingSpace&lt;br/&gt;+ getCapacity(): int&lt;br/&gt;+ getOccupiedCount(): long&lt;/div&gt;" vertex="1">
+                    <mxGeometry height="232" width="270" x="1080" y="-1142" as="geometry"/>
+                </mxCell>
+                <mxCell id="c_Rate" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontColor=#1a1a1a;align=center;verticalAlign=top;spacing=4;" value="&lt;div style=&quot;font-weight:bold;text-align:center;font-size:14px;padding:4px&quot;&gt;Rate&lt;/div&gt;&lt;hr/&gt;&lt;div style=&quot;text-align:left;font-size:11px;padding:3px&quot;&gt;- vehicleType: VehicleType&lt;br/&gt;- hourlyAmount: BigDecimal&lt;/div&gt;&lt;hr/&gt;&lt;div style=&quot;text-align:left;font-size:11px;padding:3px&quot;&gt;+ Rate(vehicleType, hourlyAmount)&lt;br/&gt;+ getVehicleType(): VehicleType&lt;br/&gt;+ getHourlyAmount(): BigDecimal&lt;br/&gt;+ calculate(duration): BigDecimal&lt;/div&gt;" vertex="1">
+                    <mxGeometry height="178" width="250" x="950" y="508" as="geometry"/>
+                </mxCell>
+                <mxCell id="c_Payment" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontColor=#1a1a1a;align=center;verticalAlign=top;spacing=4;" value="&lt;div style=&quot;font-weight:bold;text-align:center;font-size:14px;padding:4px&quot;&gt;Payment&lt;/div&gt;&lt;hr/&gt;&lt;div style=&quot;text-align:left;font-size:11px;padding:3px&quot;&gt;- reference: String&lt;br/&gt;- amount: BigDecimal&lt;br/&gt;- method: PaymentMethod&lt;br/&gt;- status: PaymentStatus&lt;br/&gt;- paidAt: Instant&lt;/div&gt;&lt;hr/&gt;&lt;div style=&quot;text-align:left;font-size:11px;padding:3px&quot;&gt;+ recordResult(successful, time): void&lt;br/&gt;+ receipt(): String&lt;/div&gt;" vertex="1">
+                    <mxGeometry height="196" width="260" x="1305" y="359" as="geometry"/>
+                </mxCell>
+                <mxCell id="c_ParkingService" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontColor=#1a1a1a;align=center;verticalAlign=top;spacing=4;" value="&lt;div style=&quot;font-weight:bold;text-align:center;font-size:14px;padding:4px&quot;&gt;ParkingService&lt;/div&gt;&lt;hr/&gt;&lt;div style=&quot;text-align:left;font-size:11px;padding:3px&quot;&gt;- maxSessionHours: int&lt;br/&gt;- parkingLot: ParkingLot&lt;/div&gt;&lt;hr/&gt;&lt;div style=&quot;text-align:left;font-size:11px;padding:3px&quot;&gt;+ getMaxSessionHours(): int&lt;br/&gt;+ getParkingLot(): ParkingLot&lt;br/&gt;+ findAvailable(type): List&amp;lt;ParkingSpace&amp;gt;&lt;br/&gt;+ startSession(vehicle): ParkingSession&lt;br/&gt;+ startSession(vehicle, space): ParkingSession&lt;br/&gt;+ endSession(session): void&lt;/div&gt;" vertex="1">
+                    <mxGeometry height="214" width="300" x="455" y="-1133" as="geometry"/>
+                </mxCell>
+                <mxCell id="JNDRZ6uKDK9orJE2o6Cf-11" edge="1" parent="1" source="c_PaymentService" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;entryX=-0.001;entryY=0.675;entryDx=0;entryDy=0;defaultLabelBackgroundColor=page;labelPadding=0 4;curved=0;strokeColor=light-dark(#666666, #ededed);entryPerimeter=0;" target="c_Rate">
+                    <mxGeometry relative="1" x="-0.0682" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="850" y="-110"/>
+                            <mxPoint x="850" y="628.2"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="c_PaymentService" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontColor=#1a1a1a;align=center;verticalAlign=top;spacing=4;" value="&lt;div style=&quot;font-weight:bold;text-align:center;font-size:14px;padding:4px&quot;&gt;PaymentService&lt;/div&gt;&lt;hr/&gt;&lt;div style=&quot;text-align:left;font-size:11px;padding:3px&quot;&gt;- provider: String&lt;br/&gt;- rates: Map&lt;br/&gt;- payments: List&amp;lt;Payment&amp;gt;&lt;br/&gt;- paidSessions: Set&amp;lt;ParkingSession&amp;gt;&lt;/div&gt;&lt;hr/&gt;&lt;div style=&quot;text-align:left;font-size:11px;padding:3px&quot;&gt;+ getProvider(): String&lt;br/&gt;+ getRates(): Map&lt;br/&gt;+ getPayments(): List&amp;lt;Payment&amp;gt;&lt;br/&gt;+ process(session, method): Payment&lt;br/&gt;+ issueReceipt(payment): String&lt;/div&gt;" vertex="1">
+                    <mxGeometry height="232" width="300" x="450" y="-260" as="geometry"/>
+                </mxCell>
+                <mxCell id="c_CompatibilityPolicy" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontColor=#1a1a1a;align=center;verticalAlign=top;spacing=4;" value="&lt;div style=&quot;font-weight:bold;text-align:center;font-size:14px;padding:4px&quot;&gt;CompatibilityPolicy&lt;/div&gt;&lt;hr/&gt;&lt;div style=&quot;text-align:left;font-size:11px;padding:3px&quot;&gt;&lt;/div&gt;&lt;hr/&gt;&lt;div style=&quot;text-align:left;font-size:11px;padding:3px&quot;&gt;+ isCompatible(vehicle, space): boolean&lt;/div&gt;" vertex="1">
+                    <mxGeometry height="88" width="270" x="2620" y="-350" as="geometry"/>
+                </mxCell>
+                <mxCell id="c_Validation" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontColor=#1a1a1a;align=center;verticalAlign=top;spacing=4;" value="&lt;div style=&quot;font-weight:bold;text-align:center;font-size:14px;padding:4px&quot;&gt;Validation&lt;/div&gt;&lt;hr/&gt;&lt;div style=&quot;text-align:left;font-size:11px;padding:3px&quot;&gt;&lt;/div&gt;&lt;hr/&gt;&lt;div style=&quot;text-align:left;font-size:11px;padding:3px&quot;&gt;+ requireText(value, fieldName): String&lt;br/&gt;+ requireNonNull(value, fieldName): T&lt;br/&gt;+ requireNotFuture(value, fieldName): Instant&lt;br/&gt;+ requirePositive(value, fieldName): int&lt;/div&gt;" vertex="1">
+                    <mxGeometry height="142" width="280" x="-645" y="-1692" as="geometry"/>
+                </mxCell>
+                <mxCell id="c_ConsoleMain" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontColor=#1a1a1a;align=center;verticalAlign=top;spacing=4;" value="&lt;div style=&quot;font-weight:bold;text-align:center;font-size:14px;padding:4px&quot;&gt;ConsoleMain&lt;/div&gt;&lt;hr/&gt;&lt;div style=&quot;text-align:left;font-size:11px;padding:3px&quot;&gt;&lt;/div&gt;&lt;hr/&gt;&lt;div style=&quot;text-align:left;font-size:11px;padding:3px&quot;&gt;+ main(args): void&lt;/div&gt;" vertex="1">
+                    <mxGeometry height="88" width="270" x="-130" y="-420" as="geometry"/>
+                </mxCell>
+                <mxCell id="c_Server" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontColor=#1a1a1a;align=center;verticalAlign=top;spacing=4;" value="&lt;div style=&quot;font-weight:bold;text-align:center;font-size:14px;padding:4px&quot;&gt;Server&lt;/div&gt;&lt;hr/&gt;&lt;div style=&quot;text-align:left;font-size:11px;padding:3px&quot;&gt;- ROOT: Path&lt;br/&gt;- COOKIE: String&lt;br/&gt;- SESSION_LIFETIME_SECONDS: long&lt;br/&gt;- ADMIN_USER: String&lt;br/&gt;- ADMIN_PASSWORD: String&lt;br/&gt;- SESSIONS: Map&lt;br/&gt;- RANDOM: SecureRandom&lt;br/&gt;- CONTENT_TYPES: Map&lt;/div&gt;&lt;hr/&gt;&lt;div style=&quot;text-align:left;font-size:11px;padding:3px&quot;&gt;+ main(args): void&lt;/div&gt;" vertex="1">
+                    <mxGeometry height="232" width="300" x="-640" y="-1501" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_SpaceType" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontColor=#1a1a1a;align=center;verticalAlign=top;spacing=4;" value="&lt;div style=&quot;font-weight:bold;text-align:center;padding:4px&quot;&gt;SpaceType&lt;/div&gt;&lt;div style=&quot;text-align:center;font-style:italic;font-size:11px&quot;&gt;«enumeration»&lt;/div&gt;&lt;hr/&gt;&lt;div style=&quot;text-align:left;font-size:11px;padding:4px&quot;&gt;STANDARD&lt;br/&gt;MOTORCYCLE&lt;br/&gt;EV&lt;br/&gt;ACCESSIBLE&lt;/div&gt;" vertex="1">
+                    <mxGeometry height="134" width="250" x="2660" y="-1120" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_SpaceStatus" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontColor=#1a1a1a;align=center;verticalAlign=top;spacing=4;" value="&lt;div style=&quot;font-weight:bold;text-align:center;padding:4px&quot;&gt;SpaceStatus&lt;/div&gt;&lt;div style=&quot;text-align:center;font-style:italic;font-size:11px&quot;&gt;«enumeration»&lt;/div&gt;&lt;hr/&gt;&lt;div style=&quot;text-align:left;font-size:11px;padding:4px&quot;&gt;AVAILABLE&lt;br/&gt;RESERVED&lt;br/&gt;OCCUPIED&lt;br/&gt;OUT_OF_SERVICE&lt;/div&gt;" vertex="1">
+                    <mxGeometry height="134" width="250" x="2660" y="-910" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_PaymentMethod" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontColor=#1a1a1a;align=center;verticalAlign=top;spacing=4;" value="&lt;div style=&quot;font-weight:bold;text-align:center;padding:4px&quot;&gt;PaymentMethod&lt;/div&gt;&lt;div style=&quot;text-align:center;font-style:italic;font-size:11px&quot;&gt;«enumeration»&lt;/div&gt;&lt;hr/&gt;&lt;div style=&quot;text-align:left;font-size:11px;padding:4px&quot;&gt;MAYA&lt;br/&gt;PAYPAL&lt;br/&gt;GCASH&lt;br/&gt;GOMO&lt;br/&gt;CASH&lt;br/&gt;OTHER_E_WALLET&lt;/div&gt;" vertex="1">
+                    <mxGeometry height="170" width="250" x="1590" y="730" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_IncidentStatus" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontColor=#1a1a1a;align=center;verticalAlign=top;spacing=4;" value="&lt;div style=&quot;font-weight:bold;text-align:center;padding:4px&quot;&gt;IncidentStatus&lt;/div&gt;&lt;div style=&quot;text-align:center;font-style:italic;font-size:11px&quot;&gt;«enumeration»&lt;/div&gt;&lt;hr/&gt;&lt;div style=&quot;text-align:left;font-size:11px;padding:4px&quot;&gt;OPEN&lt;br/&gt;RESOLVED&lt;/div&gt;" vertex="1">
+                    <mxGeometry height="98" width="250" x="1670" y="-1550" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge1" edge="1" parent="1" source="c_User" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;fontSize=10;endArrow=block;endFill=0;" target="c_Driver" value="">
+                    <mxGeometry relative="1" x="0.0581" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="-480" y="279"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge2" edge="1" parent="1" source="c_User" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;fontSize=10;endArrow=block;endFill=0;" target="c_Administrator" value="">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="-150" y="-1130"/>
+                            <mxPoint x="-150" y="-1340"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge3" edge="1" parent="1" source="c_User" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;fontSize=10;endArrow=block;endFill=0;" target="c_Attendant" value="">
+                    <mxGeometry relative="1" x="-0.1142" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="-237.5" y="-1060"/>
+                            <mxPoint x="-237.5" y="-1026"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge4" edge="1" parent="1" source="c_Driver" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;fontSize=10;startArrow=diamond;startFill=0;endArrow=none;" target="c_Vehicle" value="registers">
+                    <mxGeometry relative="1" x="-0.093" as="geometry">
+                        <mxPoint as="offset"/>
+                        <Array as="points">
+                            <mxPoint x="2395" y="300"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge5" edge="1" parent="1" source="c_ParkingLot" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;fontSize=10;startArrow=diamond;startFill=1;endArrow=none;" target="c_ParkingSpace" value="contains">
+                    <mxGeometry relative="1" x="0.1424" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1620" y="-1080"/>
+                            <mxPoint x="1620" y="-960"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge7" edge="1" parent="1" source="c_ParkingSession" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;fontSize=10;endArrow=open;" target="c_Vehicle" value="parks">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge8" edge="1" parent="1" source="c_ParkingSession" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;fontSize=10;endArrow=open;" target="c_ParkingSpace" value="occupies">
+                    <mxGeometry relative="1" x="0.1121" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1890" y="-700"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge9" edge="1" parent="1" source="c_Incident" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;fontSize=10;endArrow=open;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=-0.01;entryY=0.142;entryDx=0;entryDy=0;entryPerimeter=0;" target="c_ParkingSpace" value="may concern">
+                    <mxGeometry relative="1" x="-0.1479" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1750" y="-1393"/>
+                            <mxPoint x="1750" y="-1051.7"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge10" edge="1" parent="1" source="c_Attendant" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;fontSize=10;endArrow=open;" target="c_ParkingService" value="uses">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge11" edge="1" parent="1" source="c_ParkingService" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;fontSize=10;endArrow=open;" target="c_ParkingLot" value="manages">
+                    <mxGeometry relative="1" x="-0.1077" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge12" edge="1" parent="1" source="c_ParkingService" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;fontSize=10;endArrow=open;" target="c_ParkingSession" value="starts / ends">
+                    <mxGeometry relative="1" x="0.0814" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="620" y="-800"/>
+                            <mxPoint x="1140" y="-800"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge13" edge="1" parent="1" source="c_ReservationService" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;fontSize=10;endArrow=open;" target="c_ParkingLot" value="uses">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge15" edge="1" parent="1" source="c_PaymentService" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;fontSize=10;endArrow=open;" target="c_ParkingSession" value="charges">
+                    <mxGeometry relative="1" x="0.0717" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1000" y="-180"/>
+                            <mxPoint x="1000" y="-470"/>
+                            <mxPoint x="1140" y="-470"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge18" edge="1" parent="1" source="c_Vehicle" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;fontSize=10;endArrow=open;" target="e_VehicleType" value="">
+                    <mxGeometry relative="1" x="-0.0305" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="3350" y="-170"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge19" edge="1" parent="1" source="c_ParkingSpace" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;fontSize=10;endArrow=open;" target="e_SpaceType" value="">
+                    <mxGeometry relative="1" x="-0.0291" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="2385" y="-950"/>
+                            <mxPoint x="2385" y="-1053"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge20" edge="1" parent="1" source="c_ParkingSpace" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;fontSize=10;endArrow=open;" target="e_SpaceStatus" value="">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="2385" y="-880"/>
+                            <mxPoint x="2385" y="-843"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge21" edge="1" parent="1" source="c_Reservation" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;fontSize=10;endArrow=open;" target="e_VehicleType" value="">
+                    <mxGeometry relative="1" x="-0.0283" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1185" y="180"/>
+                            <mxPoint x="3400" y="180"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge23" edge="1" parent="1" source="c_ParkingSession" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;fontSize=10;endArrow=open;" target="e_SessionStatus" value="">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge24" edge="1" parent="1" source="c_Rate" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;fontSize=10;endArrow=open;" target="e_VehicleType" value="">
+                    <mxGeometry relative="1" x="0.0603" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1180" y="430"/>
+                            <mxPoint x="940" y="430"/>
+                            <mxPoint x="940" y="-430"/>
+                            <mxPoint x="3250" y="-430"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge25" edge="1" parent="1" source="c_Payment" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;fontSize=10;endArrow=open;" target="e_PaymentMethod" value="">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1435" y="815"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge26" edge="1" parent="1" source="c_Payment" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;fontSize=10;endArrow=open;" target="e_PaymentStatus" value="">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1670" y="457"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge27" edge="1" parent="1" source="c_Incident" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;fontSize=10;endArrow=open;" target="e_IncidentStatus" value="">
+                    <mxGeometry relative="1" x="-0.1202" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1505" y="-1440"/>
+                            <mxPoint x="1505" y="-1501"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge28" edge="1" parent="1" source="c_Administrator" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;fontSize=10;dashed=1;endArrow=open;" target="c_Incident" value="resolves">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge29" edge="1" parent="1" source="c_Administrator" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;fontSize=10;dashed=1;endArrow=open;" target="c_ParkingSpace" value="updates">
+                    <mxGeometry relative="1" x="-0.0325" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="910" y="-1310"/>
+                            <mxPoint x="910" y="-1220"/>
+                            <mxPoint x="1680" y="-1220"/>
+                            <mxPoint x="1680" y="-1000"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge30" edge="1" parent="1" source="c_Vehicle" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;fontSize=10;dashed=1;endArrow=open;" target="c_CompatibilityPolicy" value="checks compatibility">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge31" edge="1" parent="1" source="c_ParkingLot" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;fontSize=10;dashed=1;endArrow=open;" target="c_CompatibilityPolicy" value="checks compatibility">
+                    <mxGeometry relative="1" x="-0.0474" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1490" y="-950"/>
+                            <mxPoint x="1490" y="-720"/>
+                            <mxPoint x="2755" y="-720"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge33" edge="1" parent="1" source="c_ConsoleMain" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;fontSize=10;dashed=1;endArrow=open;" target="c_PaymentService" value="calls">
+                    <mxGeometry relative="1" x="0.102" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="550" y="-350"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge35" edge="1" parent="1" source="c_ConsoleMain" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;fontSize=10;dashed=1;endArrow=open;entryX=-0.003;entryY=0.349;entryDx=0;entryDy=0;entryPerimeter=0;" target="c_Rate" value="creates demo rates">
+                    <mxGeometry relative="1" x="0.2252" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="10" y="100"/>
+                            <mxPoint x="410" y="100"/>
+                            <mxPoint x="410" y="570.1"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="title" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=26;fontStyle=1;strokeColor=none;fillColor=none;strokeWidth=1;perimeterSpacing=0;" value="&lt;div style=&quot;text-align: center;&quot;&gt;&lt;b style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;Smart Parking Lot — UML Class Diagram&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;text-align: center;&quot;&gt;&lt;span style=&quot;color: rgb(23, 54, 93); font-size: 22px; font-weight: 400;&quot;&gt;Core classes, fields, methods, and relationships&lt;/span&gt;&lt;b&gt;&lt;/b&gt;&lt;/div&gt;" vertex="1">
+                    <mxGeometry height="80" width="600" x="800" y="-1830" as="geometry"/>
+                </mxCell>
+                <mxCell id="JNDRZ6uKDK9orJE2o6Cf-1" edge="1" parent="1" source="c_ConsoleMain" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;fontSize=10;dashed=1;endArrow=open;" target="c_ParkingSpace" value="">
+                    <mxGeometry relative="1" x="-0.0425" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="2020" y="-410"/>
+                        </Array>
+                        <mxPoint x="50" y="1076" as="sourcePoint"/>
+                        <mxPoint x="1285" y="192" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="c_Incident" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontColor=#1a1a1a;align=center;verticalAlign=top;spacing=4;" value="&lt;div style=&quot;font-weight:bold;text-align:center;font-size:14px;padding:4px&quot;&gt;Incident&lt;/div&gt;&lt;hr/&gt;&lt;div style=&quot;text-align:left;font-size:11px;padding:3px&quot;&gt;- id: String&lt;br/&gt;- type: String&lt;br/&gt;- details: String&lt;br/&gt;- space: ParkingSpace&lt;br/&gt;- createdAt: Instant&lt;br/&gt;- status: IncidentStatus&lt;br/&gt;- resolution: String&lt;/div&gt;&lt;hr/&gt;&lt;div style=&quot;text-align:left;font-size:11px;padding:3px&quot;&gt;+ resolve(note): void&lt;/div&gt;" vertex="1">
+                    <mxGeometry height="214" width="260" x="1080" y="-1500" as="geometry"/>
+                </mxCell>
+                <mxCell id="c_ParkingSpace" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontColor=#1a1a1a;align=center;verticalAlign=top;spacing=4;" value="&lt;div style=&quot;font-weight:bold;text-align:center;font-size:14px;padding:4px&quot;&gt;ParkingSpace&lt;/div&gt;&lt;hr/&gt;&lt;div style=&quot;text-align:left;font-size:11px;padding:3px&quot;&gt;- id: String&lt;br/&gt;- level: String&lt;br/&gt;- type: SpaceType&lt;br/&gt;- status: SpaceStatus&lt;/div&gt;&lt;hr/&gt;&lt;div style=&quot;text-align:left;font-size:11px;padding:3px&quot;&gt;+ ParkingSpace(id, level, type)&lt;br/&gt;+ ParkingSpace(id, level, type, status)&lt;br/&gt;+ getId(): String&lt;br/&gt;+ getLevel(): String&lt;br/&gt;+ getType(): SpaceType&lt;br/&gt;+ getStatus(): SpaceStatus&lt;br/&gt;+ reserve(): boolean&lt;br/&gt;+ occupy(): boolean&lt;br/&gt;+ release(): void&lt;br/&gt;+ setOutOfService(): void&lt;br/&gt;+ setStatus(status): void&lt;/div&gt;" vertex="1">
+                    <mxGeometry height="340" width="290" x="1820" y="-1100" as="geometry"/>
+                </mxCell>
+                <mxCell id="JNDRZ6uKDK9orJE2o6Cf-4" edge="1" parent="1" source="c_ConsoleMain" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;fontSize=10;dashed=1;endArrow=open;" target="e_VehicleType" value="">
+                    <mxGeometry relative="1" x="0.0081" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="3290" y="-380"/>
+                        </Array>
+                        <mxPoint x="-370" y="1298" as="sourcePoint"/>
+                        <mxPoint x="490" y="-320" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="e_VehicleType" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontColor=#1a1a1a;align=center;verticalAlign=top;spacing=4;" value="&lt;div style=&quot;font-weight:bold;text-align:center;padding:4px&quot;&gt;VehicleType&lt;/div&gt;&lt;div style=&quot;text-align:center;font-style:italic;font-size:11px&quot;&gt;«enumeration»&lt;/div&gt;&lt;hr/&gt;&lt;div style=&quot;text-align:left;font-size:11px;padding:4px&quot;&gt;STANDARD&lt;br/&gt;MOTORCYCLE&lt;br/&gt;EV&lt;br/&gt;ACCESSIBLE&lt;/div&gt;" vertex="1">
+                    <mxGeometry height="134" width="250" x="3190" y="-590" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_PaymentStatus" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontColor=#1a1a1a;align=center;verticalAlign=top;spacing=4;" value="&lt;div style=&quot;font-weight:bold;text-align:center;padding:4px&quot;&gt;PaymentStatus&lt;/div&gt;&lt;div style=&quot;text-align:center;font-style:italic;font-size:11px&quot;&gt;«enumeration»&lt;/div&gt;&lt;hr/&gt;&lt;div style=&quot;text-align:left;font-size:11px;padding:4px&quot;&gt;PENDING&lt;br/&gt;PAID&lt;br/&gt;FAILED&lt;/div&gt;" vertex="1">
+                    <mxGeometry height="116" width="250" x="1590" y="570" as="geometry"/>
+                </mxCell>
+                <mxCell id="c_ReservationService" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontColor=#1a1a1a;align=center;verticalAlign=top;spacing=4;" value="&lt;div style=&quot;font-weight:bold;text-align:center;font-size:14px;padding:4px&quot;&gt;ReservationService&lt;/div&gt;&lt;hr/&gt;&lt;div style=&quot;text-align:left;font-size:11px;padding:3px&quot;&gt;- reservations: List&amp;lt;Reservation&amp;gt;&lt;br/&gt;- parkingLot: ParkingLot&lt;br/&gt;- reservationWindow: Duration&lt;/div&gt;&lt;hr/&gt;&lt;div style=&quot;text-align:left;font-size:11px;padding:3px&quot;&gt;+ getReservations(): List&amp;lt;Reservation&amp;gt;&lt;br/&gt;+ getParkingLot(): ParkingLot&lt;br/&gt;+ getReservationWindow(): Duration&lt;br/&gt;+ reserve(driver, vehicle): Reservation&lt;br/&gt;+ cancel(reservation): void&lt;br/&gt;+ expireOverdue(): void&lt;/div&gt;" vertex="1">
+                    <mxGeometry height="232" width="300" x="455" y="-742" as="geometry"/>
+                </mxCell>
+                <mxCell id="c_ParkingSession" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontColor=#1a1a1a;align=center;verticalAlign=top;spacing=4;" value="&lt;div style=&quot;font-weight:bold;text-align:center;font-size:14px;padding:4px&quot;&gt;ParkingSession&lt;/div&gt;&lt;hr/&gt;&lt;div style=&quot;text-align:left;font-size:11px;padding:3px&quot;&gt;- vehicle: Vehicle&lt;br/&gt;- space: ParkingSpace&lt;br/&gt;- startedAt: Instant&lt;br/&gt;- reservationReference: String&lt;br/&gt;- endedAt: Instant&lt;br/&gt;- status: SessionStatus&lt;br/&gt;- reminderSent: boolean&lt;/div&gt;&lt;hr/&gt;&lt;div style=&quot;text-align:left;font-size:11px;padding:3px&quot;&gt;+ duration(): Duration&lt;br/&gt;+ markReminderSent(): void&lt;br/&gt;+ close(endTime): boolean&lt;/div&gt;" vertex="1">
+                    <mxGeometry height="250" width="290" x="1065" y="-751" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_SessionStatus" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontColor=#1a1a1a;align=center;verticalAlign=top;spacing=4;" value="&lt;div style=&quot;font-weight:bold;text-align:center;padding:4px&quot;&gt;SessionStatus&lt;/div&gt;&lt;div style=&quot;text-align:center;font-style:italic;font-size:11px&quot;&gt;«enumeration»&lt;/div&gt;&lt;hr/&gt;&lt;div style=&quot;text-align:left;font-size:11px;padding:4px&quot;&gt;ACTIVE&lt;br/&gt;COMPLETED&lt;/div&gt;" vertex="1">
+                    <mxGeometry height="98" width="250" x="1590" y="-675" as="geometry"/>
+                </mxCell>
+                <mxCell id="JNDRZ6uKDK9orJE2o6Cf-9" edge="1" parent="1" source="c_Reservation" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;fontSize=10;endArrow=open;entryX=0.006;entryY=0.595;entryDx=0;entryDy=0;entryPerimeter=0;" target="e_ReservationStatus" value="">
+                    <mxGeometry relative="1" x="-0.1909" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1510" y="-120"/>
+                            <mxPoint x="1510" y="-199.6"/>
+                        </Array>
+                        <mxPoint x="1360" y="-108" as="sourcePoint"/>
+                        <mxPoint x="1965" y="-760" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="e_ReservationStatus" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontColor=#1a1a1a;align=center;verticalAlign=top;spacing=4;" value="&lt;div style=&quot;font-weight:bold;text-align:center;padding:4px&quot;&gt;ReservationStatus&lt;/div&gt;&lt;div style=&quot;text-align:center;font-style:italic;font-size:11px&quot;&gt;«enumeration»&lt;/div&gt;&lt;hr/&gt;&lt;div style=&quot;text-align:left;font-size:11px;padding:4px&quot;&gt;RESERVED&lt;br/&gt;CHECKED_IN&lt;br/&gt;COMPLETED&lt;br/&gt;CANCELLED&lt;br/&gt;EXPIRED&lt;/div&gt;" vertex="1">
+                    <mxGeometry height="152" width="250" x="1590" y="-290" as="geometry"/>
+                </mxCell>
+                <mxCell id="c_Reservation" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontColor=#1a1a1a;align=center;verticalAlign=top;spacing=4;" value="&lt;div style=&quot;font-weight:bold;text-align:center;font-size:14px;padding:4px&quot;&gt;Reservation&lt;/div&gt;&lt;hr/&gt;&lt;div style=&quot;text-align:left;font-size:11px;padding:3px&quot;&gt;- reference: String&lt;br/&gt;- driverId: String&lt;br/&gt;- plate: String&lt;br/&gt;- vehicleType: VehicleType&lt;br/&gt;- space: ParkingSpace&lt;br/&gt;- arrivalAt: Instant&lt;br/&gt;- expiresAt: Instant&lt;br/&gt;- status: ReservationStatus&lt;/div&gt;&lt;hr/&gt;&lt;div style=&quot;text-align:left;font-size:11px;padding:3px&quot;&gt;+ checkIn(): boolean&lt;br/&gt;+ cancel(): void&lt;br/&gt;+ expire(): void&lt;br/&gt;+ expireIfOverdue(now): boolean&lt;br/&gt;+ complete(): void&lt;/div&gt;" vertex="1">
+                    <mxGeometry height="304" width="290" x="1040" y="-280" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge_reservation_manages" edge="1" parent="1" source="c_ReservationService" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;fontSize=10;endArrow=open;" target="c_Reservation" value="manages">
+                    <mxGeometry relative="1" x="-0.0469" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="880" y="-590"/>
+                            <mxPoint x="880" y="-128"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge_reservation_space" edge="1" parent="1" source="c_Reservation" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;fontSize=10;endArrow=open;" target="c_ParkingSpace" value="reserves">
+                    <mxGeometry relative="1" x="0.0388" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1965" y="-80"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
 </mxfile>

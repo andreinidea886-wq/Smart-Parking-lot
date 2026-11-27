@@ -11,6 +11,20 @@ The Java server uses only JDK libraries; no external dependencies are required.
 
 ## Run locally
 
+### Run the one-time console flow
+
+Open PowerShell in the project folder and run:
+
+```powershell
+Set-Location .\src\java
+javac *.java
+java ConsoleMain
+```
+
+Choose **1** to enter a vehicle, select its type and a payment method, and complete one simulated parking session and payment. The demo uses PHP 50 per hour and charges at least one hour.
+
+### Run the website
+
 Open PowerShell in the project folder, enter `src\java`, and compile the Java files:
 
 ```powershell
